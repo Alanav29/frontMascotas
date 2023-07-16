@@ -1,0 +1,20 @@
+.petButtonHome {
+	width: 150px;
+	height: 150px;
+	border-radius: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lostPetsBtnHome {
+	background-color: var(--color-one);
+}
+
+.shelteredPetsBtnHome {
+	background-color: var(--color-two);
+}
+
+.adoptionPetsBtnHome {
+	background-color: var(--color-three);
+}

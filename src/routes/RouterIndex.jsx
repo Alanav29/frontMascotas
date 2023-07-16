@@ -3,6 +3,8 @@ import Home from "../screens/Home";
 import LostPets from "../screens/LostPets";
 import ShelteredPets from "../screens/ShelteredPets";
 import PetsForAdoption from "../screens/PetsForAdoption";
+import SignIn from "../screens/SignIn";
+import SignUp from "../screens/SignUp";
 
 export const RouterIndex = () => {
 	return (
@@ -11,6 +13,8 @@ export const RouterIndex = () => {
 			<Route path="/mascotas-perdidas" element={<LostPets />} />
 			<Route path="/mascotas-resguardadas" element={<ShelteredPets />} />
 			<Route path="/mascotas-en-adopcion" element={<PetsForAdoption />} />
+			<Route path="/signIn" element={<SignIn />} />
+			<Route path="/signUp" element={<SignUp />} />
 		</Routes>
 	);
 };
