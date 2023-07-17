@@ -1,21 +1,22 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "../../styles/LostPetCard.css";
 
-const LostPetCard = () => {
+const LostPetCard = ({ lostPet }) => {
 	return (
 		<>
 			<div className="card cardList m-3 lostPetCard">
 				<img
-					src="https://res.cloudinary.com/dtyazhppg/image/upload/v1689399972/samples/animals/three-dogs.jpg"
+					src={lostPet.image.secure_url}
 					className="card-img-top"
 					alt="..."
 				/>
 				<div className="card-body">
-					<h5 className="card-title">Nombre Mascota</h5>
-					<h5 className="card-title">Fecha en que se perdio</h5>
-					<p>20/01/2023</p>
-					<p className="card-text">Descripcion mascota</p>
-					<Link to="/" className="btn btn-primary">
+					<h1 className="card-title fs-4 colorThree">{lostPet.name}</h1>
+					<h2 className="card-title fs-5">Fecha de perdida</h2>
+					<p className="card-title fs-6">{lostPet.date_lost}</p>
+					<p className="card-title fs-6">{lostPet.description}</p>
+					<Link to={`/${lostPet._id}`} className="btn bgOne">
 						Mas detalles
 					</Link>
 				</div>

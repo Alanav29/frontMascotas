@@ -1,12 +1,23 @@
 :root {
-	--lostPetsFilter-color: rgb(200, 200, 200);
+	--lostPetsFilter-color: rgb(234, 234, 234);
 }
 
 .lostPetsFilter {
+	width: 200px;
+	background-color: var(--lostPetsFilter-color);
+	border-radius: 20px;
+	height: 400px;
 }
 
-.lostPetsFilterBox {
-	height: 100%;
-	width: 100%;
-	background-color: var(--lostPetsFilter-color);
+.lostPetsBox {
+	width: auto;
+}
+
+.addLostPetCard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 15rem;
+	min-width: 10rem;
+	min-height: 100px;
 }

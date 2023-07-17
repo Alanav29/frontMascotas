@@ -3,3 +3,27 @@
 	--color-two: rgb(97, 202, 255);
 	--color-three: rgb(200, 118, 255);
 }
+
+.colorOne {
+	color: var(--color-one);
+}
+
+.colorTwo {
+	color: var(--color-two);
+}
+
+.colorThree {
+	color: var(--color-three);
+}
+
+.bgOne {
+	background-color: var(--color-one);
+}
+
+.bgTwo {
+	background-color: var(--color-two);
+}
+
+.bgThree {
+	background-color: var(--color-three);
+}

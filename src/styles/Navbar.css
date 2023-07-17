@@ -12,3 +12,37 @@
 .dropdown-item {
 	background-color: transparent !important;
 }
+
+.navElement1 {
+	order: 1;
+}
+
+.navElement2 {
+	order: 2;
+}
+
+.navElement3 {
+	order: 3;
+}
+
+.navElement4 {
+	order: 4;
+}
+
+@media (max-width: 768px) {
+	.navElement1 {
+		order: 2;
+	}
+
+	.navElement2 {
+		order: 4;
+	}
+
+	.navElement3 {
+		order: 3;
+	}
+
+	.navElement4 {
+		order: 1;
+	}
+}

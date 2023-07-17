@@ -1,4 +1,4 @@
 .lostPetCard {
-	width: 15rem;
-	font-size: 12px;
+	max-width: 15rem;
+	min-width: 10rem;
 }

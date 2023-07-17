@@ -17,11 +17,8 @@ const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-md bg-body-tertiary">
 			<div className="container-fluid d-flex justify-content-start">
-				<Link to="/" className="navbar-brand">
-					App Mascotas
-				</Link>
 				<button
-					className="navbar-toggler ms-auto"
+					className="navbar-toggler me-4 navElement4"
 					type="button"
 					data-bs-toggle="collapse"
 					data-bs-target="#navbarNav"
@@ -31,8 +28,11 @@ const Navbar = () => {
 				>
 					<span className="navbar-toggler-icon" />
 				</button>
+				<Link to="/" className="navbar-brand me-lg-4 me-auto navElement1">
+					App Mascotas
+				</Link>
 				<div
-					className="collapse navbar-collapse justify-content-end"
+					className="collapse navbar-collapse justify-content-center navElement2"
 					id="navbarNav"
 				>
 					<ul className="navbar-nav">
@@ -57,7 +57,7 @@ const Navbar = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="navbar-nav mb-lg-0 ">
+				<div className="navbar-nav mb-lg-0 navElement3">
 					<li className="nav-item dropdown">
 						<div
 							className="d-flex align-items-center userOptionsDiv"
