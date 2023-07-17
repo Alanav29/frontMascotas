@@ -1,0 +1,12 @@
+:root {
+	--lostPetsFilter-color: rgb(200, 200, 200);
+}
+
+.lostPetsFilter {
+}
+
+.lostPetsFilterBox {
+	height: 100%;
+	width: 100%;
+	background-color: var(--lostPetsFilter-color);
+}
