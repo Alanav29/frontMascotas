@@ -12,9 +12,14 @@ const NavbarUserOptions = () => {
 	const userSigned = useSelector(selectUser);
 
 	let optionSignOff = (
-		<button className="btn btn-danger" onClick={signOff}>
-			Cerrar Sesion
-		</button>
+		<>
+			<Link className="btn btn-primary mb-2" to="/user-data">
+				Mi perfil
+			</Link>
+			<button className="btn btn-danger" onClick={signOff}>
+				Cerrar Sesion
+			</button>
+		</>
 	);
 
 	let optionSignIn = (
