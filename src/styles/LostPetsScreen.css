@@ -3,10 +3,8 @@
 }
 
 .lostPetsFilter {
-	width: 200px;
 	background-color: var(--lostPetsFilter-color);
-	border-radius: 20px;
-	height: 400px;
+	border-radius: 999px;
 }
 
 .lostPetsBox {

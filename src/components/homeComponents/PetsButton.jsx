@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 
 const PetsButton = ({ buttonText, url, classBg }) => {
 	return (
-		<Link
-			to={url}
-			className={`m-3 petButtonHome text-center text-decoration-none fs-4 text-white ${classBg}`}
-		>
+		<Link to={url} className={`petButtonHome text-center fs-4 ${classBg}`}>
 			{buttonText}
 		</Link>
 	);

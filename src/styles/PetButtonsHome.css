@@ -1,11 +1,15 @@
 .petButtonHome {
-	min-width: 100px;
-	max-width: 150px;
-	height: 150px;
+	width: 30vw;
+	margin: 2vw;
+	max-width: 180px;
+	height: 30vw;
+	max-height: 180px;
 	border-radius: 10%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: white;
+	text-decoration: none !important;
 }
 
 .lostPetsBtnHome {

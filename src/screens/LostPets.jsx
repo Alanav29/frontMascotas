@@ -20,7 +20,7 @@ const LostPets = () => {
 			try {
 				const result = await getAllLostPets();
 
-				if (result.status === 200) {
+				if (result.status === 201) {
 					setLostPets(result.data);
 				}
 			} catch (error) {
@@ -34,9 +34,9 @@ const LostPets = () => {
 	}, []);
 
 	return (
-		<div className="container-fluid d-flex">
-			<div className="">
-				<div className="lostPetsFilter p-2 my-2">filter</div>
+		<div className="container-fluid">
+			<div className="lostPetsFilter">
+				<div className="p-2 my-2">Ordenar por</div>
 			</div>
 			<div className="lostPetsBox d-flex justify-content-center flex-wrap">
 				{addPetCard}

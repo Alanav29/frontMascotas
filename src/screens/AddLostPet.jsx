@@ -1,8 +1,28 @@
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userFeature";
+import postLostPet from "../utils/lostPets/postLostPet";
+import { useNavigate } from "react-router-dom";
 
 const AddLostPet = () => {
 	const { register, handleSubmit } = useForm();
-	const addLostPet = () => {};
+	const user = useSelector(selectUser);
+	const navigate = useNavigate();
+	const addLostPet = (data) => {
+		const fetchPostLostPet = async (data) => {
+			try {
+				const result = await postLostPet(data, user.email, user.token);
+
+				if (result.status === 201) {
+					navigate("/");
+					console.log("se agrego la mascota");
+				}
+			} catch (error) {
+				console.log("Ocurrio un error al agregar la mascota ", error.message);
+			}
+		};
+		fetchPostLostPet(data);
+	};
 
 	return (
 		<div className="d-flex flex-wrap">
