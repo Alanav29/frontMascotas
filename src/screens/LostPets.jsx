@@ -20,7 +20,7 @@ const LostPets = () => {
 			try {
 				const result = await getAllLostPets();
 
-				if (result.status === 201) {
+				if (result.status === 200) {
 					setLostPets(result.data);
 				}
 			} catch (error) {
