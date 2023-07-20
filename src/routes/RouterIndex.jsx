@@ -7,6 +7,7 @@ import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
 import AddLostPet from "../screens/AddLostPet";
 import UserData from "../screens/UserData";
+import PublicityBanners from "../screens/PublicityBanners";
 
 export const RouterIndex = () => {
 	return (
@@ -19,6 +20,7 @@ export const RouterIndex = () => {
 			<Route path="/signUp" element={<SignUp />} />
 			<Route path="/add-lost-pet" element={<AddLostPet />} />
 			<Route path="/user-data" element={<UserData />} />
+			<Route path="/publicity-banners" element={<PublicityBanners />} />
 		</Routes>
 	);
 };

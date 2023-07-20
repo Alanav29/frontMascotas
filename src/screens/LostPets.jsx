@@ -5,10 +5,13 @@ import getAllLostPets from "../utils/lostPets/getLostPets";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { selectUser } from "../features/userFeature";
 import AddLostPetCard from "../components/LostPetsScreen/AddLostPetCard";
+import { selectChangesCounter } from "../features/changesCounterFeature";
 
 const LostPets = () => {
 	const [lostPets, setLostPets] = useState([]);
 	const user = useSelector(selectUser);
+	const changesCounter = useSelector(selectChangesCounter);
+
 	let addPetCard = <></>;
 
 	if (user.token) {
@@ -31,7 +34,7 @@ const LostPets = () => {
 			}
 		};
 		fetchLostPetsData();
-	}, []);
+	}, [changesCounter]);
 
 	return (
 		<div className="container-fluid">
