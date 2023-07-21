@@ -55,20 +55,26 @@ const HomeCarousel = () => {
 							alt="..."
 						/>
 					</Link>
-					<div className="carousel-item">
-						<img
-							src={banners.bannerTwo.image}
-							className="d-block w-100"
-							alt="..."
-						/>
-					</div>
-					<div className="carousel-item">
+					<Link
+						to={`publicity-banners/${banners.bannerTwo.id}`}
+						className="carousel-item active"
+					>
 						<img
 							src={banners.bannerThree.image}
 							className="d-block w-100"
 							alt="..."
 						/>
-					</div>
+					</Link>
+					<Link
+						to={`publicity-banners/${banners.bannerThree.id}`}
+						className="carousel-item active"
+					>
+						<img
+							src={banners.bannerThree.image}
+							className="d-block w-100"
+							alt="..."
+						/>
+					</Link>
 				</div>
 				<button
 					className="carousel-control-prev"
