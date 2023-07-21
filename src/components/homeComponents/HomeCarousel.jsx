@@ -1,6 +1,24 @@
+import { Link } from "react-router-dom";
 import "../../styles/HomeCarousel.css";
 
 const HomeCarousel = () => {
+	const banners = {
+		bannerOne: {
+			image:
+				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
+			id: "1",
+		},
+		bannerTwo: {
+			image:
+				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
+			id: "2",
+		},
+		bannerThree: {
+			image:
+				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
+			id: "3",
+		},
+	};
 	return (
 		<div className="carouselHeight">
 			<div id="carouselExampleIndicators" className="carousel slide">
@@ -27,23 +45,26 @@ const HomeCarousel = () => {
 					/>
 				</div>
 				<div className="carousel-inner">
-					<div className="carousel-item active">
+					<Link
+						to={`publicity-banners/${banners.bannerOne.id}`}
+						className="carousel-item active"
+					>
 						<img
-							src="https://res.cloudinary.com/dtyazhppg/image/upload/v1689479541/samples/banner1_o9cokg.jpg"
+							src={banners.bannerOne.image}
+							className="d-block w-100"
+							alt="..."
+						/>
+					</Link>
+					<div className="carousel-item">
+						<img
+							src={banners.bannerTwo.image}
 							className="d-block w-100"
 							alt="..."
 						/>
 					</div>
 					<div className="carousel-item">
 						<img
-							src="https://res.cloudinary.com/dtyazhppg/image/upload/v1689479541/samples/banner1_o9cokg.jpg"
-							className="d-block w-100"
-							alt="..."
-						/>
-					</div>
-					<div className="carousel-item">
-						<img
-							src="https://res.cloudinary.com/dtyazhppg/image/upload/v1689479541/samples/banner1_o9cokg.jpg"
+							src={banners.bannerThree.image}
 							className="d-block w-100"
 							alt="..."
 						/>

@@ -14,9 +14,12 @@ const LostPets = () => {
 
 	let addPetCard = <></>;
 
-	if (user.token) {
-		addPetCard = <AddLostPetCard />;
-	}
+	const setAddCard = () => {
+		if (user.token) {
+			addPetCard = <AddLostPetCard />;
+		}
+	};
+	setAddCard();
 
 	useEffect(() => {
 		const fetchLostPetsData = async () => {
@@ -34,7 +37,7 @@ const LostPets = () => {
 			}
 		};
 		fetchLostPetsData();
-	}, [changesCounter]);
+	}, [changesCounter.value]);
 
 	return (
 		<div className="container-fluid">
