@@ -1,10 +1,17 @@
 import { useForm } from "react-hook-form";
 import postUser from "../../utils/user/postUserReq";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
 	const { handleSubmit, register } = useForm();
 	const navigate = useNavigate();
+	const notify = () => {
+		toast.error("Ese usuario ya existe", {
+			position: toast.POSITION.TOP_RIGHT,
+		});
+	};
 
 	const signUp = (data) => {
 		const fetchSignUp = async (data) => {
@@ -13,13 +20,14 @@ const SignUpForm = () => {
 
 				if (result.status === 200) {
 					console.log("se registro el usuario");
+					navigate("/");
 				}
 			} catch (error) {
+				notify();
 				console.log("Ocurrio un error al registrar usuario ", error.message);
 			}
 		};
 		fetchSignUp(data);
-		navigate("/");
 	};
 
 	return (
@@ -66,6 +74,7 @@ const SignUpForm = () => {
 					Registrarse
 				</button>
 			</form>
+			<ToastContainer />
 		</>
 	);
 };
