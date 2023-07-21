@@ -8,12 +8,14 @@ import SignUp from "../screens/SignUp";
 import AddLostPet from "../screens/AddLostPet";
 import UserData from "../screens/UserData";
 import PublicityBanners from "../screens/PublicityBanners";
+import LostPetDetail from "../screens/LostPetDetail";
 
 export const RouterIndex = () => {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/mascotas-perdidas" element={<LostPets />} />
+			<Route path="/mascotas-perdidas/:lostPetId" element={<LostPetDetail />} />
 			<Route path="/mascotas-resguardadas" element={<ShelteredPets />} />
 			<Route path="/mascotas-en-adopcion" element={<PetsForAdoption />} />
 			<Route path="/signIn" element={<SignIn />} />

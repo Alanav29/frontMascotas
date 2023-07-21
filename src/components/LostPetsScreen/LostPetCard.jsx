@@ -48,7 +48,10 @@ const LostPetCard = ({ lostPet }) => {
 					<h2 className="card-title fs-5">Fecha de perdida</h2>
 					<p className="card-title fs-6">{lostPet.date_lost}</p>
 					<p className="card-title fs-6">{lostPet.description}</p>
-					<Link to={`/${lostPet._id}`} className="btn bgOne me-2">
+					<Link
+						to={`/mascotas-perdidas/${lostPet._id}`}
+						className="btn bgOne me-2"
+					>
 						Mas detalles
 					</Link>
 					{deleteButtonOption}
