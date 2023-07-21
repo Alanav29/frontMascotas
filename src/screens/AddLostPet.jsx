@@ -14,7 +14,7 @@ const AddLostPet = () => {
 	const addLostPet = (data) => {
 		const fetchPostLostPet = async (data) => {
 			try {
-				const result = await postLostPet(data, user.email, user.token);
+				const result = await postLostPet(data, user._id, user.token);
 
 				if (result.status === 201) {
 					dispatch(setChange(1));

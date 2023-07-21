@@ -24,6 +24,7 @@ const SignInForm = () => {
 			if (result.status === 200) {
 				dispatch(
 					setUser({
+						_id: result._id,
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
@@ -33,6 +34,7 @@ const SignInForm = () => {
 				window.localStorage.setItem(
 					"user",
 					JSON.stringify({
+						_id: result._id,
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
