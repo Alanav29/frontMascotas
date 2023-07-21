@@ -18,7 +18,7 @@ const SignUpForm = () => {
 			try {
 				const result = await postUser(data);
 
-				if (result.status === 200) {
+				if (result.status === 201) {
 					console.log("se registro el usuario");
 					navigate("/");
 				}

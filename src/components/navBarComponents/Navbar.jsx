@@ -5,13 +5,24 @@ import NavbarUserOptions from "./NavbarUserOptions";
 import "../../styles/Navbar.css";
 
 const Navbar = () => {
-	const userState = useSelector(selectUser);
+	const user = useSelector(selectUser);
 	let userMenuText = "Usuarios";
+	let publicityBannersLink = <></>;
 
-	if (userState.token) {
-		userMenuText = userState.name;
+	if (user.token) {
+		userMenuText = user.name;
 	} else {
 		userMenuText = "Usuarios";
+	}
+
+	if (user.isAdmin) {
+		publicityBannersLink = (
+			<li className="nav-item">
+				<Link className="nav-link" to="/publicity-banners">
+					Anuncios
+				</Link>
+			</li>
+		);
 	}
 
 	return (
@@ -55,6 +66,7 @@ const Navbar = () => {
 								Mascotas en Adopción
 							</Link>
 						</li>
+						{publicityBannersLink}
 					</ul>
 				</div>
 

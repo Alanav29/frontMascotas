@@ -28,6 +28,7 @@ const SignInForm = () => {
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
+						isAdmin: result.data.isAdmin,
 					})
 				);
 
@@ -38,6 +39,7 @@ const SignInForm = () => {
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
+						isAdmin: result.data.isAdmin,
 					})
 				);
 
