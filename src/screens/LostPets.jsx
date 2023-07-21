@@ -37,7 +37,7 @@ const LostPets = () => {
 			}
 		};
 		fetchLostPetsData();
-	}, [changesCounter.value]);
+	}, [changesCounter]);
 
 	return (
 		<div className="container-fluid">

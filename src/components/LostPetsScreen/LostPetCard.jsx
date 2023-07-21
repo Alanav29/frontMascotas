@@ -10,20 +10,20 @@ const LostPetCard = ({ lostPet }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	let deleteButtonOption = <></>;
+	const fetchDeleteLostPet = async () => {
+		try {
+			const result = await delLostPet(lostPet._id, user.token);
+
+			if (result.status === 200) {
+				dispatch(setChange(1));
+				console.log("se borro mascota perdida");
+			}
+		} catch (error) {
+			console.log("Ocurrio un error al borrar la mascota ", error.message);
+		}
+	};
 
 	const deleteLostPet = () => {
-		const fetchDeleteLostPet = async () => {
-			try {
-				const result = await delLostPet(lostPet._id, user.token);
-
-				if (result.status === 200) {
-					dispatch(setChange(1));
-					console.log("se borro mascota perdida");
-				}
-			} catch (error) {
-				console.log("Ocurrio un error al borrar la mascota ", error.message);
-			}
-		};
 		fetchDeleteLostPet();
 	};
 
