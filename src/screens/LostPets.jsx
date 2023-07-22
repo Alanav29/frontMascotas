@@ -39,10 +39,44 @@ const LostPets = () => {
 		fetchLostPetsData();
 	}, [changesCounter]);
 
+	const [orderChanged, setOrderChanged] = useState(false);
+	const [toggleMostRecent, setToggleMostRecent] = useState("");
+	const [toggleLessRecent, setToggleLessRecent] = useState("active");
+
+	const mostRecentFilter = () => {
+		if (orderChanged == false) {
+			setLostPets(lostPets.reverse());
+			setOrderChanged(true);
+			setToggleMostRecent("active");
+			setToggleLessRecent("");
+		}
+	};
+
+	const lessRecentFilter = () => {
+		if (orderChanged == true) {
+			setLostPets(lostPets.reverse());
+			setOrderChanged(false);
+			setToggleMostRecent("");
+			setToggleLessRecent("active");
+		}
+	};
+
 	return (
 		<div className="container-fluid">
-			<div className="lostPetsFilter">
-				<div className="p-2 my-2">Ordenar por</div>
+			<div className="lostPetsFilter my-3 d-flex">
+				<div className="d-flex align-items-center ms-4 me-2">Ordenar por</div>
+				<div
+					onClick={mostRecentFilter}
+					className={`m-2 d-flex align-items-center btn ${toggleMostRecent}`}
+				>
+					Más recientes
+				</div>
+				<div
+					onClick={lessRecentFilter}
+					className={`m-2 d-flex align-items-center btn ${toggleLessRecent}`}
+				>
+					Más antiguas
+				</div>
 			</div>
 			<div className="lostPetsBox d-flex justify-content-center flex-wrap">
 				{addPetCard}

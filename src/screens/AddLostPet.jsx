@@ -4,27 +4,36 @@ import { selectUser } from "../features/userFeature";
 import postLostPet from "../utils/lostPets/postLostPet";
 import { useNavigate } from "react-router-dom";
 import { setChange } from "../features/changesCounterFeature";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddLostPet = () => {
 	const { register, handleSubmit } = useForm();
 	const user = useSelector(selectUser);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const notify = () => {
+		toast.success("Estamos agregando a tu mascota", {
+			position: toast.POSITION.TOP_CENTER,
+		});
+	};
+
+	const fetchPostLostPet = async (data) => {
+		try {
+			const result = await postLostPet(data, user._id, user.token);
+
+			if (result.status === 201) {
+				navigate("/");
+				dispatch(setChange(1));
+				console.log("se agrego la mascota");
+			}
+		} catch (error) {
+			console.log("Ocurrio un error al agregar la mascota ", error.message);
+		}
+	};
 
 	const addLostPet = (data) => {
-		const fetchPostLostPet = async (data) => {
-			try {
-				const result = await postLostPet(data, user._id, user.token);
-
-				if (result.status === 201) {
-					navigate("/");
-					dispatch(setChange(1));
-					console.log("se agrego la mascota");
-				}
-			} catch (error) {
-				console.log("Ocurrio un error al agregar la mascota ", error.message);
-			}
-		};
+		notify();
 		fetchPostLostPet(data);
 	};
 
@@ -81,6 +90,7 @@ const AddLostPet = () => {
 					Registra mascota perdida
 				</button>
 			</form>
+			<ToastContainer />
 		</div>
 	);
 };

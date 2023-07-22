@@ -73,7 +73,10 @@ const LostPetDetail = () => {
 		);
 	} else if (user._id === lostPet.user_id) {
 		editButton = (
-			<Link to="/" className="btn btn-success">
+			<Link
+				to={`/mascota-perdida-edit/${lostPetId}`}
+				className="btn btn-primary"
+			>
 				Editar mascota
 			</Link>
 		);
