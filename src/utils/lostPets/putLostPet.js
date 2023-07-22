@@ -1,11 +1,14 @@
 import { lostPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const postLostPet = (petData, user_id, token) => {
+const putLostPet = (petData, id, token) => {
+	const putLostPetEndpoint = `${lostPetsBaseEndpoint}${id}`;
+
 	const petInfo = {
 		name: petData.name,
 		date_lost: petData.date_lost,
 		description: petData.description,
 		image: petData.image,
+		status: petData.status,
 	};
 
 	let myHeaders = new Headers();
@@ -13,21 +16,21 @@ const postLostPet = (petData, user_id, token) => {
 
 	let formdata = new FormData();
 	formdata.append("name", petInfo.name);
-	formdata.append("user_id", user_id);
 	formdata.append("date_lost", petInfo.date_lost);
 	formdata.append("description", petInfo.description);
+	formdata.append("status", petInfo.status);
 	formdata.append("image", petInfo.image[0]);
 
 	let requestOptions = {
-		method: "POST",
+		method: "PUT",
 		headers: myHeaders,
 		body: formdata,
 		redirect: "follow",
 	};
 
-	const postLostPetRequest = () => fetch(lostPetsBaseEndpoint, requestOptions);
+	const putLostPetRequest = () => fetch(putLostPetEndpoint, requestOptions);
 
-	return postLostPetRequest();
+	return putLostPetRequest();
 };
 
-export default postLostPet;
+export default putLostPet;

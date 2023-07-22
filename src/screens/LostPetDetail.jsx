@@ -8,14 +8,19 @@ import { selectUser } from "../features/userFeature";
 import { setChange } from "../features/changesCounterFeature";
 import delLostPet from "../utils/lostPets/delLostPet";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const LostPetDetail = () => {
+	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 	const { lostPetId } = useParams();
 	const [lostPet, setLostPet] = useState({ image: "" });
-	const comments = [{ id: "24", comment: "Lo vi hace un rato" }];
+	const comments = [
+		{ id: "24", comment: "Lo vi hace un rato", user_name: "Alan" },
+		{ id: "25", comment: "Paso por mi casa", user_name: "Alan" },
+	];
 	let delButton = <></>;
 	let editButton = <></>;
 
@@ -84,21 +89,21 @@ const LostPetDetail = () => {
 
 	return (
 		<div className="container my-4">
-			<div className="card mb-3">
+			<div className="mb-3">
 				<div className="row g-0">
-					<div className="col-md-5">
+					<div className="col-md-5 p-4 ps-0">
 						<img
 							src={lostPet.image.secure_url}
 							className="img-fluid rounded-start"
 							alt="Pet image"
 						/>
 					</div>
-					<div className="col-md-7">
-						<div className="card-body">
-							<h5 className="card-title">{lostPet.name}</h5>
-							<p className="card-text mb-2">{lostPet.description}</p>
-							<h5 className="card-title">Me perdi el :</h5>
-							<h6 className="card-text">{lostPet.date_lost}</h6>
+					<div className="col-md-7 p-4">
+						<div className="">
+							<h5 className="fs-5">{lostPet.name}</h5>
+							<p className="fs-6 mb-2">{lostPet.description}</p>
+							<h5 className="fs-5">Me perdi el :</h5>
+							<h6 className="fs-6">{lostPet.date_lost}</h6>
 							<div className="d-flex">
 								{delButton}
 								{editButton}
@@ -112,6 +117,29 @@ const LostPetDetail = () => {
 				{comments.map((comment) => (
 					<Comment key={comment.id} comment={comment} />
 				))}
+				<div className="my-2">
+					<form className="d-flex" onSubmit={handleSubmit()}>
+						<textarea
+							{...register("comment")}
+							className="form-control"
+							aria-label="With textarea"
+							id="lostPetCommentInput"
+							placeholder="Agrega un comentario"
+						></textarea>
+						<button className="p-2 bg-success btn text-white mx-2 d-flex align-items-center">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								fill="currentColor"
+								className="bi bi-caret-right-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+							</svg>
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	);
