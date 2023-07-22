@@ -17,8 +17,8 @@ const AddLostPet = () => {
 				const result = await postLostPet(data, user._id, user.token);
 
 				if (result.status === 201) {
-					dispatch(setChange(1));
 					navigate("/");
+					dispatch(setChange(1));
 					console.log("se agrego la mascota");
 				}
 			} catch (error) {

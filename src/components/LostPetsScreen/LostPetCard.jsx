@@ -27,7 +27,7 @@ const LostPetCard = ({ lostPet }) => {
 		fetchDeleteLostPet();
 	};
 
-	if (user.token) {
+	if (user.isAdmin) {
 		deleteButtonOption = (
 			<button className="btn btn-danger" onClick={deleteLostPet}>
 				Borrar

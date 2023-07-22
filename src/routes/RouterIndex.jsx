@@ -10,6 +10,7 @@ import UserData from "../screens/UserData";
 import PublicityBanners from "../screens/PublicityBanners";
 import LostPetDetail from "../screens/LostPetDetail";
 import PublicityDetail from "../screens/PublicityDetail";
+import LostPetEdit from "../screens/LostPetEdit";
 
 export const RouterIndex = () => {
 	return (
@@ -17,6 +18,10 @@ export const RouterIndex = () => {
 			<Route path="/" element={<Home />} />
 			<Route path="/mascotas-perdidas" element={<LostPets />} />
 			<Route path="/mascotas-perdidas/:lostPetId" element={<LostPetDetail />} />
+			<Route
+				path="/mascota-perdida-edit/:lostPetId"
+				element={<LostPetEdit />}
+			/>
 			<Route path="/mascotas-resguardadas" element={<ShelteredPets />} />
 			<Route path="/mascotas-en-adopcion" element={<PetsForAdoption />} />
 			<Route path="/signIn" element={<SignIn />} />
