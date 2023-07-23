@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { selectUser } from "../../features/userFeature";
 import "../../styles/LostPetDetail.css";
 import delComment from "../../utils/comments/delComment";
@@ -9,7 +8,6 @@ import { setChange } from "../../features/changesCounterFeature";
 const Comment = ({ comment }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
-	const { lostPetId } = useParams();
 	let delButton = <></>;
 
 	const fetchDeleteComment = async () => {
