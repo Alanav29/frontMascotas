@@ -8,6 +8,13 @@ import { setChange } from "../features/changesCounterFeature";
 import delLostPet from "../utils/lostPets/delLostPet";
 import { useForm } from "react-hook-form";
 import putLostPet from "../utils/lostPets/putLostPet";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const notify = () => {
+	toast.success("Estamos actualizando tu mascota", {
+		position: toast.POSITION.TOP_CENTER,
+	});
+};
 
 const LostPetEdit = () => {
 	const { register, handleSubmit } = useForm();
@@ -72,6 +79,7 @@ const LostPetEdit = () => {
 	};
 
 	const updateLostPet = (data) => {
+		notify();
 		fetchPutLostPet(data);
 	};
 
@@ -160,6 +168,7 @@ const LostPetEdit = () => {
 					{formBox}
 				</div>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 };
