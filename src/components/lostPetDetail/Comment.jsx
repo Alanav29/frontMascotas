@@ -34,11 +34,11 @@ const Comment = ({ comment }) => {
 			</button>
 		);
 	}
-
+	console.log(comment);
 	return (
 		<div className="commentBox rounded d-flex flex-row mb-2">
 			<div className="me-auto ms-2 d-flex align-items-center">
-				{/* <h6 className="ms-3 mb-0 mt-1">{comment.user_name}</h6> */}
+				<h6 className="ms-3 mb-0 mt-1">{comment.user[0].name}</h6>
 				<p className="m-0 d-flex align-items-center me-auto">{comment.text}</p>
 			</div>
 			{delButton}
