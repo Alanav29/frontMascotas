@@ -50,7 +50,7 @@ const LostPetCard = ({ lostPet }) => {
 					<p className="card-title fs-6">{lostPet.description}</p>
 					<Link
 						to={`/mascotas-perdidas/${lostPet._id}`}
-						className="btn bgOne me-2"
+						className="btn btn-warning text-white me-2"
 					>
 						Mas detalles
 					</Link>

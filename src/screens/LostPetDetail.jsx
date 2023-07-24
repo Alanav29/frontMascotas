@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getLostPet from "../utils/lostPets/getLostPet";
 import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/lostPetDetail/comment";
@@ -9,20 +9,22 @@ import { setChange } from "../features/changesCounterFeature";
 import delLostPet from "../utils/lostPets/delLostPet";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import getComments from "../utils/comments/getComments";
+import { selectChangesCounter } from "../features/changesCounterFeature";
+import postComment from "../utils/comments/postComment";
 
 const LostPetDetail = () => {
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit, reset } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
+	const changesCounter = useSelector(selectChangesCounter);
 	const { lostPetId } = useParams();
 	const [lostPet, setLostPet] = useState({ image: "" });
-	const comments = [
-		{ id: "24", comment: "Lo vi hace un rato", user_name: "Alan" },
-		{ id: "25", comment: "Paso por mi casa", user_name: "Alan" },
-	];
+	const [comments, setComments] = useState([]);
 	let delButton = <></>;
 	let editButton = <></>;
+	let commentForm = <></>;
 
 	const fetchGetLostPet = async () => {
 		try {
@@ -39,9 +41,28 @@ const LostPetDetail = () => {
 		}
 	};
 
-	useState(() => {
+	const fetchComments = async () => {
+		try {
+			const result = await getComments(lostPetId);
+
+			if (result.status === 200) {
+				setComments(result.data);
+			}
+		} catch (error) {
+			console.log(
+				"Ocurrio un error al traer los comentarios de la mascota perdida",
+				error.message
+			);
+		}
+	};
+
+	useEffect(() => {
 		fetchGetLostPet();
 	}, []);
+
+	useEffect(() => {
+		fetchComments();
+	}, [changesCounter]);
 
 	const fetchDeleteLostPet = async () => {
 		try {
@@ -59,6 +80,24 @@ const LostPetDetail = () => {
 
 	const deleteLostPet = () => {
 		fetchDeleteLostPet();
+	};
+
+	const fetchPostComment = async (data) => {
+		try {
+			const result = await postComment(data, lostPetId, "LostPet", user.token);
+
+			if (result.status === 200) {
+				dispatch(setChange(1));
+				console.log("se agrego comentario");
+			}
+		} catch (error) {
+			console.log("Ocurrio un error al publicar comentario ", error.message);
+		}
+	};
+
+	const addComment = (data) => {
+		reset();
+		fetchPostComment(data);
 	};
 
 	if (user.isAdmin) {
@@ -84,6 +123,37 @@ const LostPetDetail = () => {
 			>
 				Editar mascota
 			</Link>
+		);
+	}
+
+	if (user.token) {
+		commentForm = (
+			<div className="my-2">
+				<form className="d-flex" onSubmit={handleSubmit(addComment)}>
+					<textarea
+						{...register("text")}
+						className="form-control"
+						aria-label="With textarea"
+						id="lostPetCommentInput"
+						placeholder="Agrega un comentario"
+					></textarea>
+					<button
+						type="submit"
+						className="p-2 bg-success btn text-white mx-2 d-flex align-items-center"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							fill="currentColor"
+							className="bi bi-caret-right-fill"
+							viewBox="0 0 16 16"
+						>
+							<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+						</svg>
+					</button>
+				</form>
+			</div>
 		);
 	}
 
@@ -115,31 +185,9 @@ const LostPetDetail = () => {
 			<div>
 				<h5 className="my-4">Comentarios</h5>
 				{comments.map((comment) => (
-					<Comment key={comment.id} comment={comment} />
+					<Comment key={comment._id} comment={comment} />
 				))}
-				<div className="my-2">
-					<form className="d-flex" onSubmit={handleSubmit()}>
-						<textarea
-							{...register("comment")}
-							className="form-control"
-							aria-label="With textarea"
-							id="lostPetCommentInput"
-							placeholder="Agrega un comentario"
-						></textarea>
-						<button className="p-2 bg-success btn text-white mx-2 d-flex align-items-center">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								fill="currentColor"
-								className="bi bi-caret-right-fill"
-								viewBox="0 0 16 16"
-							>
-								<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-							</svg>
-						</button>
-					</form>
-				</div>
+				{commentForm}
 			</div>
 		</div>
 	);

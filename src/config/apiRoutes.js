@@ -8,9 +8,12 @@ const userSignInEndpoint = `${baseGeneralURL}users/login`;
 
 const lostPetsBaseEndpoint = `${baseGeneralURL}lostPets/`;
 
+const commentsBaseEndpoint = `${baseGeneralURL}comments/`;
+
 export {
 	usersBaseEndpoint,
 	userInfoEndpoint,
 	userSignInEndpoint,
 	lostPetsBaseEndpoint,
+	commentsBaseEndpoint,
 };
