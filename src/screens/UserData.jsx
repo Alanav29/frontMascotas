@@ -30,11 +30,25 @@ const UserData = () => {
 	}, [changesCounter]);
 	return (
 		<div className="container my-4">
-			<h3>Datos del usuario</h3>
-			<h4>Nombre</h4>
-			<h5>{userInfo.name}</h5>
-			<h4>Email</h4>
-			<h5>{userInfo.email}</h5>
+			<div className="">
+				<h3>Datos del usuario</h3>
+				<h4>Nombre</h4>
+				<div className="fs-5">{userInfo.name}</div>
+				<h4>Email</h4>
+				<div className="fs-5">{userInfo.email}</div>
+			</div>
+			<div className="">
+				<h4>Mascotas del usuario</h4>
+				<div>
+					<h4>Mascotas perdidas</h4>
+				</div>
+				<div>
+					<h4>Mascotas Resguardadas</h4>
+				</div>
+				<div>
+					<h4>Mascotas en Adopción</h4>
+				</div>
+			</div>
 		</div>
 	);
 };
