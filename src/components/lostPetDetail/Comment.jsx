@@ -38,7 +38,7 @@ const Comment = ({ comment }) => {
 	return (
 		<div className="commentBox rounded d-flex flex-row mb-2">
 			<div className="me-auto ms-2 d-block">
-				<h6 className="d-flex m-0 my-1">{comment.user[0].name}</h6>
+				<h6 className="d-flex m-0 my-1">{comment.username}</h6>
 				<p className="m-0 mb-1">{comment.text}</p>
 			</div>
 			{delButton}
