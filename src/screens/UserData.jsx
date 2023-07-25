@@ -4,9 +4,12 @@ import { useSelector } from "react-redux";
 import { selectChangesCounter } from "../features/changesCounterFeature";
 import getUserInfo from "../utils/user/getUserInfo";
 import { selectUser } from "../features/userFeature";
+import LostPetCard from "../components/LostPetsScreen/LostPetCard";
 
 const UserData = () => {
-	const [userInfo, setUserInfo] = useState([]);
+	const [userInfo, setUserInfo] = useState({
+		lostPets: [{ _id: 1, image: {} }],
+	});
 	const changesCounter = useSelector(selectChangesCounter);
 	const user = useSelector(selectUser);
 
@@ -15,7 +18,7 @@ const UserData = () => {
 			const result = await getUserInfo(user.token);
 
 			if (result.status === 200) {
-				setUserInfo(result.data);
+				setUserInfo(result.data[0]);
 			}
 		} catch (error) {
 			console.log(
@@ -39,8 +42,11 @@ const UserData = () => {
 			</div>
 			<div className="">
 				<h4>Mascotas del usuario</h4>
-				<div>
-					<h4>Mascotas perdidas</h4>
+				<h4>Mascotas perdidas</h4>
+				<div className="d-flex overflow-scroll">
+					{userInfo.lostPets.map((lostPet) => (
+						<LostPetCard key={lostPet._id} lostPet={lostPet} />
+					))}
 				</div>
 				<div>
 					<h4>Mascotas Resguardadas</h4>
