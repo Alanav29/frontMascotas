@@ -27,7 +27,9 @@ const Comment = ({ comment }) => {
 		fetchDeleteComment();
 	};
 
-	if (user.isAdmin || comment.user_id == user._id) {
+	const userComment = comment.user_id ?? false;
+
+	if (user.isAdmin || user._id == userComment) {
 		delButton = (
 			<button onClick={deleteComment} className="btn btn-danger">
 				Borrar
