@@ -17,10 +17,12 @@ const App = () => {
 		}
 	}, []);
 	return (
-		<Router>
-			<Navbar />
-			<RouterIndex />
-		</Router>
+		<>
+			<Router>
+				<Navbar />
+				<RouterIndex />
+			</Router>
+		</>
 	);
 };
 
