@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectChangesCounter } from "../features/changesCounterFeature";
 import getUserInfo from "../utils/user/getUserInfo";
 import { selectUser } from "../features/userFeature";
-import LostPetCard from "../components/LostPetsScreen/LostPetCard";
+import PetCard from "../components/LostPetsScreen/PetCard";
 
 const UserData = () => {
 	const [userInfo, setUserInfo] = useState({
@@ -45,7 +45,7 @@ const UserData = () => {
 				<h4>Mascotas perdidas</h4>
 				<div className="d-flex overflow-scroll">
 					{userInfo.lostPets.map((lostPet) => (
-						<LostPetCard key={lostPet._id} lostPet={lostPet} />
+						<PetCard key={lostPet._id} lostPet={lostPet} />
 					))}
 				</div>
 				<div>
