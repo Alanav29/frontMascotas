@@ -1,7 +1,7 @@
 import PetEdit from "../components/generalComponents/PetEdit";
 import getAdoptionPet from "../utils/adoptionPets/getAdoptionPet";
-import delAdoptionPet from "../utils/lostPets/delAdoptionPet";
-import putAdoptionPet from "../utils/lostPets/putAdoptionPet";
+import delAdoptionPet from "../utils/adoptionPets/delAdoptionPet";
+import putAdoptionPet from "../utils/adoptionPets/putAdoptionPet";
 
 const AdoptionPetEdit = () => {
 	return (
