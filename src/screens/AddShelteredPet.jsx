@@ -1,5 +1,13 @@
+import AddPetScreen from "../components/generalComponents/AddPetScreen";
+import postShelteredPet from "../utils/shelteredPets/postShelteredPet";
+
 const AddShelteredPet = () => {
-	return <div>AddShelteredPet</div>;
+	return (
+		<AddPetScreen
+			postPet={postShelteredPet}
+			petTypeUrl={"/mascotas-resguardadas/"}
+		/>
+	);
 };
 
 export default AddShelteredPet;

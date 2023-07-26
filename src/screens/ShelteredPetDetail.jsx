@@ -1,17 +1,17 @@
 import PetDetail from "../components/generalComponents/PetDetail";
-import delLostPet from "../utils/lostPets/delLostPet";
+import delShelteredPet from "../utils/shelteredPets/delShelteredPet";
 import getComments from "../utils/comments/getComments";
 import postComment from "../utils/comments/postComment";
-import getLostPet from "../utils/lostPets/getLostPet";
+import getShelteredPet from "../utils/shelteredPets/getShelteredPet";
 
 const ShelteredPetDetail = () => {
 	return (
 		<PetDetail
-			delPet={delLostPet}
+			delPet={delShelteredPet}
 			getComments={getComments}
 			postComment={postComment}
-			getPet={getLostPet}
-			editUrl={"/mascota-perdida-edit/"}
+			getPet={getShelteredPet}
+			editUrl={"/mascota-resguardada-edit/"}
 		/>
 	);
 };

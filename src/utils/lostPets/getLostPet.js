@@ -1,11 +1,11 @@
 import axios from "axios";
 import { lostPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const getLostPet = (lostPetId) => {
+const getLostPet = (petId) => {
 	let config = {
 		method: "get",
 		maxBodyLength: Infinity,
-		url: `${lostPetsBaseEndpoint}${lostPetId}`,
+		url: `${lostPetsBaseEndpoint}${petId}`,
 		headers: {},
 	};
 

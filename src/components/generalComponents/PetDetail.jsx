@@ -19,7 +19,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 	const changesCounter = useSelector(selectChangesCounter);
-	const { lostPetId } = useParams();
+	const { petId } = useParams();
 	const [pet, setPet] = useState({ image: "" });
 	const [comments, setComments] = useState([]);
 	let delButton = <></>;
@@ -28,7 +28,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 	const fetchGetLostPet = async () => {
 		try {
-			const result = await getPet(lostPetId);
+			const result = await getPet(petId);
 
 			if (result.status === 200) {
 				setPet(result.data);
@@ -43,7 +43,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 	const fetchComments = async () => {
 		try {
-			const result = await getComments(lostPetId);
+			const result = await getComments(petId);
 
 			if (result.status === 200) {
 				setComments(result.data);
@@ -66,7 +66,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 	const fetchDeletePet = async () => {
 		try {
-			const result = await delPet(lostPetId, user.token);
+			const result = await delPet(petId, user.token);
 
 			if (result.status === 200) {
 				navigate("/");
@@ -82,9 +82,25 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 		fetchDeletePet();
 	};
 
+	let dateType = "";
+	let date = pet.createAt;
+	let postType = "";
+	if (pet.date_lost) {
+		dateType = "Fecha de perdida";
+		date = pet.date_lost;
+		postType = "LostPet";
+	} else if (pet.date_found) {
+		dateType = "Fecha en que se encontro";
+		date = pet.date_found;
+		postType = "ShelteredPet";
+	} else {
+		dateType = "Fecha de subida";
+		postType = "AdoptionPet";
+	}
+
 	const fetchPostComment = async (data) => {
 		try {
-			const result = await postComment(data, lostPetId, "LostPet", user.token);
+			const result = await postComment(data, petId, postType, user.token);
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
@@ -108,13 +124,13 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 		);
 
 		editButton = (
-			<Link to={`${editUrl}${lostPetId}`} className="btn btn-primary">
+			<Link to={`${editUrl}${petId}`} className="btn btn-primary">
 				Editar mascota
 			</Link>
 		);
 	} else if (user._id === pet.user_id) {
 		editButton = (
-			<Link to={`${editUrl}${lostPetId}`} className="btn btn-primary">
+			<Link to={`${editUrl}${petId}`} className="btn btn-primary">
 				Editar mascota
 			</Link>
 		);
@@ -151,16 +167,11 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 		);
 	}
 
-	let dateType = "";
-	let date = pet.createAt;
-	if (pet.date_lost) {
-		dateType = "Fecha de perdida";
-		date = pet.date_lost;
-	} else if (pet.date_found) {
-		dateType = "Fecha en que se encontro";
-		date = pet.date_found;
+	let name = "";
+	if (pet.name === "") {
+		name = "Sin Nombre";
 	} else {
-		dateType = "Fecha de subida";
+		name = pet.name;
 	}
 
 	return (
@@ -176,7 +187,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 					</div>
 					<div className="col-md-7 p-4">
 						<div className="">
-							<h5 className="fs-5">{pet.name}</h5>
+							<h5 className="fs-5">{name}</h5>
 							<p className="fs-6 mb-2">{pet.description}</p>
 							<h5 className="fs-5">{dateType}</h5>
 							<h6 className="fs-6">{date}</h6>

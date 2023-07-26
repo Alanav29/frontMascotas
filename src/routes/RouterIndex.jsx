@@ -19,9 +19,9 @@ export const RouterIndex = () => {
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/mascotas-perdidas" element={<LostPets />} />
-			<Route path="/mascotas-perdidas/:lostPetId" element={<LostPetDetail />} />
+			<Route path="/mascotas-perdidas/:petId" element={<LostPetDetail />} />
 			<Route
-				path="/mascotas-resguardadas/:lostPetId"
+				path="/mascotas-resguardadas/:petId"
 				element={<ShelteredPetDetail />}
 			/>
 			<Route
