@@ -185,7 +185,7 @@ const LostPetDetail = () => {
 			<div>
 				<h5 className="my-4">Comentarios</h5>
 				{comments.map((comment) => (
-					<Comment key={comment._id} comment={comment} />
+					<Comment key={comment._id} comment={comment} username={user.name} />
 				))}
 				{commentForm}
 			</div>

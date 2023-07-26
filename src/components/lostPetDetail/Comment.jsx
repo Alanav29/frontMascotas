@@ -5,7 +5,7 @@ import delComment from "../../utils/comments/delComment";
 import { setChange } from "../../features/changesCounterFeature";
 
 /* eslint-disable react/prop-types */
-const Comment = ({ comment }) => {
+const Comment = ({ comment, username }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	let delButton = <></>;
