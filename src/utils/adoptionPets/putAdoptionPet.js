@@ -1,6 +1,6 @@
 import { adoptionPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const adoptionLostPet = (data, id, token) => {
+const putAdoptionPet = (data, id, token) => {
 	const putAdoptionPetEndpoint = `${adoptionPetsBaseEndpoint}${id}`;
 
 	let myHeaders = new Headers();
@@ -35,4 +35,4 @@ const adoptionLostPet = (data, id, token) => {
 	return putAdoptionPetRequest();
 };
 
-export default adoptionLostPet;
+export default putAdoptionPet;
