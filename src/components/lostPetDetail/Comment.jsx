@@ -27,7 +27,9 @@ const Comment = ({ comment, username }) => {
 		fetchDeleteComment();
 	};
 
-	if (user.isAdmin || comment.user_id == user._id) {
+	const userComment = comment.user_id ?? false;
+
+	if (user.isAdmin || user._id == userComment) {
 		delButton = (
 			<button onClick={deleteComment} className="btn btn-danger">
 				Borrar
@@ -37,9 +39,9 @@ const Comment = ({ comment, username }) => {
 
 	return (
 		<div className="commentBox rounded d-flex flex-row mb-2">
-			<div className="me-auto ms-2 d-flex align-items-center">
-				{/* <h6 className="ms-3 mb-0 mt-1">{comment.user_name}</h6> */}
-				<p className="m-0 d-flex align-items-center me-auto">{username} dice:   {comment.text}</p>
+			<div className="me-auto ms-2 d-block">
+				<h6 className="d-flex m-0 my-1">{comment.username}</h6>
+				<p className="m-0 mb-1">{comment.text}</p>
 			</div>
 			{delButton}
 		</div>

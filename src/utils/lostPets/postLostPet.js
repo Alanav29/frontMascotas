@@ -25,9 +25,7 @@ const postLostPet = (petData, user_id, token) => {
 		redirect: "follow",
 	};
 
-	const postLostPetRequest = () => fetch(lostPetsBaseEndpoint, requestOptions);
-
-	return postLostPetRequest();
+	return fetch(lostPetsBaseEndpoint, requestOptions);
 };
 
 export default postLostPet;

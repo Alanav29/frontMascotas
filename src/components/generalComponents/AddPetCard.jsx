@@ -1,12 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-const AddLostPetCard = () => {
+const AddPetCard = ({ url }) => {
 	return (
 		<>
-			<Link
-				className="bgThree addLostPetCard m-3 colorOne rounded"
-				to="/add-lost-pet"
-			>
+			<Link className="bgThree addPetCard m-3 colorOne rounded" to={url}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="48"
@@ -22,4 +20,4 @@ const AddLostPetCard = () => {
 	);
 };
 
-export default AddLostPetCard;
+export default AddPetCard;

@@ -2,16 +2,16 @@
 	--lostPetsFilter-color: rgb(234, 234, 234);
 }
 
-.lostPetsFilter {
+.petsFilter {
 	background-color: var(--lostPetsFilter-color);
 	border-radius: 999px;
 }
 
-.lostPetsBox {
+.petsBox {
 	width: auto;
 }
 
-.addLostPetCard {
+.addPetCard {
 	display: flex;
 	justify-content: center;
 	align-items: center;
