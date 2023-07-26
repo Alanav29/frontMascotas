@@ -12,6 +12,7 @@ import LostPetDetail from "../screens/LostPetDetail";
 import PublicityDetail from "../screens/PublicityDetail";
 import LostPetEdit from "../screens/LostPetEdit";
 import AddShelteredPet from "../screens/AddShelteredPet";
+import AddAdoptionPet from '../screens/AddAdoptionPet.jsx'
 import ShelteredPetDetail from "../screens/ShelteredPetDetail";
 
 export const RouterIndex = () => {
@@ -33,6 +34,7 @@ export const RouterIndex = () => {
 			<Route path="/signIn" element={<SignIn />} />
 			<Route path="/signUp" element={<SignUp />} />
 			<Route path="/add-lost-pet" element={<AddLostPet />} />
+			<Route path="/add-adoption-pet" element={<AddAdoptionPet />} />
 			<Route path="/add-sheltered-pet" element={<AddShelteredPet />} />
 			<Route path="/user-data" element={<UserData />} />
 			<Route path="/publicity-banners" element={<PublicityBanners />} />
