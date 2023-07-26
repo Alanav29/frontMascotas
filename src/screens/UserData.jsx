@@ -5,6 +5,7 @@ import { selectChangesCounter } from "../features/changesCounterFeature";
 import getUserInfo from "../utils/user/getUserInfo";
 import { selectUser } from "../features/userFeature";
 import PetCard from "../components/LostPetsScreen/PetCard";
+import delLostPet from "../utils/lostPets/delLostPet";
 
 const UserData = () => {
 	const [userInfo, setUserInfo] = useState({
@@ -45,7 +46,12 @@ const UserData = () => {
 				<h4>Mascotas perdidas</h4>
 				<div className="d-flex overflow-scroll">
 					{userInfo.lostPets.map((lostPet) => (
-						<PetCard key={lostPet._id} lostPet={lostPet} />
+						<PetCard
+							key={lostPet._id}
+							pet={lostPet}
+							delPet={delLostPet}
+							cardUrl={"/mascotas-perdidas/"}
+						/>
 					))}
 				</div>
 				<div>
