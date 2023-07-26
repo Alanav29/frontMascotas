@@ -25,7 +25,10 @@
 }
 
 .navElement2 .dropdown-menu[data-bs-popper] {
-	position: relative;
+	top: 100%;
+	left: auto !important;
+	right: 0%;
+	margin-top: var(--bs-dropdown-spacer);
 }
 
 .navElement3 {
@@ -50,6 +53,10 @@
 
 	.navElement2 {
 		order: 4;
+	}
+
+	.navElement2 .dropdown-menu[data-bs-popper] {
+		position: relative;
 	}
 
 	.navElement3 {

@@ -14,7 +14,7 @@ const postShelteredPet = (petData, user_id, token) => {
 	let formdata = new FormData();
 	formdata.append("name", petInfo.name);
 	formdata.append("user_id", user_id);
-	formdata.append("date_lost", petInfo.date_found);
+	formdata.append("date_found", petInfo.date_found);
 	formdata.append("description", petInfo.description);
 	formdata.append("image", petInfo.image[0]);
 
