@@ -1,21 +1,37 @@
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userFeature";
 import "../../styles/LostPetDetail.css";
+import delComment from "../../utils/comments/delComment";
+import { setChange } from "../../features/changesCounterFeature";
 
 /* eslint-disable react/prop-types */
-const Comment = ({ comment }) => {
+const Comment = ({ comment, username }) => {
 	const user = useSelector(selectUser);
-	const { lostPetId } = useParams();
+	const dispatch = useDispatch();
 	let delButton = <></>;
 
-	const delComment = () => {
-		console.log(lostPetId);
+	const fetchDeleteComment = async () => {
+		try {
+			const result = await delComment(comment._id, user.token);
+
+			if (result.status === 200) {
+				dispatch(setChange(1));
+				console.log("se borro el comentario");
+			}
+		} catch (error) {
+			console.log("Ocurrio un error al borrar el comentario", error.message);
+		}
 	};
 
-	if (user.isAdmin) {
+	const deleteComment = () => {
+		fetchDeleteComment();
+	};
+
+	const userComment = comment.user_id ?? false;
+
+	if (user.isAdmin || user._id == userComment) {
 		delButton = (
-			<button onClick={delComment} className="btn btn-danger">
+			<button onClick={deleteComment} className="btn btn-danger">
 				Borrar
 			</button>
 		);
@@ -23,13 +39,9 @@ const Comment = ({ comment }) => {
 
 	return (
 		<div className="commentBox rounded d-flex flex-row mb-2">
-			<div className="me-auto">
-				<h6 className="ms-3 mb-0 mt-1">{comment.user_name}</h6>
-				<div className="ms-3 d-flex flex-row align-items-center">
-					<p className="m-0 d-flex align-items-center me-auto">
-						{comment.comment}
-					</p>
-				</div>
+			<div className="me-auto ms-2 d-block">
+				<h6 className="d-flex m-0 my-1">{comment.username}</h6>
+				<p className="m-0 mb-1">{comment.text}</p>
 			</div>
 			{delButton}
 		</div>

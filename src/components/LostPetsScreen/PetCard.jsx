@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import "../../styles/LostPetCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userFeature";
-import delLostPet from "../../utils/lostPets/delLostPet";
+// import delLostPet from "../../utils/lostPets/delLostPet";
 import { setChange } from "../../features/changesCounterFeature";
 
-const LostPetCard = ({ lostPet }) => {
+const PetCard = ({ pet, delPet, cardUrl }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	let deleteButtonOption = <></>;
-	const fetchDeleteLostPet = async () => {
+	const fetchDeletePet = async () => {
 		try {
-			const result = await delLostPet(lostPet._id, user.token);
+			const result = await delPet(pet._id, user.token);
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
@@ -23,34 +23,37 @@ const LostPetCard = ({ lostPet }) => {
 		}
 	};
 
-	const deleteLostPet = () => {
-		fetchDeleteLostPet();
+	const deletePet = () => {
+		fetchDeletePet();
 	};
 
 	if (user.isAdmin) {
 		deleteButtonOption = (
-			<button className="btn btn-danger" onClick={deleteLostPet}>
+			<button className="btn btn-danger" onClick={deletePet}>
 				Borrar
 			</button>
 		);
 	}
 
+	let dateType = "";
+	if (pet.date_lost) {
+		dateType = "Fecha de perdida";
+	} else if (pet.date_found) {
+		dateType = "Fecha en que se encontro";
+	}
+
 	return (
 		<>
 			<div className="card cardList m-3 lostPetCard">
-				<img
-					src={lostPet.image.secure_url}
-					className="card-img-top"
-					alt="..."
-				/>
+				<img src={pet.image.secure_url} className="card-img-top" alt="..." />
 				<div className="card-body">
-					<h1 className="card-title fs-4 colorThree">{lostPet.name}</h1>
-					<h2 className="card-title fs-5">Fecha de perdida</h2>
-					<p className="card-title fs-6">{lostPet.date_lost}</p>
-					<p className="card-title fs-6">{lostPet.description}</p>
+					<h1 className="card-title fs-4 colorThree">{pet.name}</h1>
+					<h2 className="card-title fs-5">{dateType}</h2>
+					<p className="card-title fs-6">{pet.date_lost}</p>
+					<p className="card-title fs-6">{pet.description}</p>
 					<Link
-						to={`/mascotas-perdidas/${lostPet._id}`}
-						className="btn bgOne me-2"
+						to={`${cardUrl}${pet._id}`}
+						className="btn btn-warning text-white me-2"
 					>
 						Mas detalles
 					</Link>
@@ -61,4 +64,4 @@ const LostPetCard = ({ lostPet }) => {
 	);
 };
 
-export default LostPetCard;
+export default PetCard;

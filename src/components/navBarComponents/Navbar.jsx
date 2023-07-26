@@ -17,11 +17,14 @@ const Navbar = () => {
 
 	if (user.isAdmin) {
 		publicityBannersLink = (
-			<li className="nav-item">
-				<Link className="nav-link" to="/publicity-banners">
-					Anuncios
-				</Link>
-			</li>
+			// <li className="nav-item">
+			// 	<Link className="nav-link" to="/publicity-banners">
+			// 		Anuncios
+			// 	</Link>
+			// </li>
+			<Link className="dropdown-item" to="/publicity-banners">
+				Anuncios
+			</Link>
 		);
 	}
 
@@ -43,10 +46,44 @@ const Navbar = () => {
 					App Mascotas
 				</Link>
 				<div
-					className="collapse navbar-collapse justify-content-center navElement2"
+					className="collapse navbar-collapse justify-content-end me-4 navElement2"
 					id="navbarNav"
 				>
-					<ul className="navbar-nav">
+					<li className="nav-item dropdown">
+						<a
+							className="nav-link dropdown-toggle"
+							href="#"
+							role="button"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						>
+							Mascotas
+						</a>
+						<ul className="dropdown-menu">
+							<li>
+								<Link
+									className="dropdown-item"
+									aria-current="page"
+									to="/mascotas-perdidas"
+								>
+									Mascotas Perdidas
+								</Link>
+							</li>
+							<li>
+								<Link className="dropdown-item" to="/mascotas-resguardadas">
+									Mascotas Resguardadas
+								</Link>
+							</li>
+							<li>
+								<Link className="dropdown-item" to="/mascotas-en-adopcion">
+									Mascotas en Adopción
+								</Link>
+							</li>
+							<li>{publicityBannersLink}</li>
+						</ul>
+					</li>
+
+					{/* <ul className="navbar-nav">
 						<li className="nav-item">
 							<Link
 								className="nav-link"
@@ -67,7 +104,7 @@ const Navbar = () => {
 							</Link>
 						</li>
 						{publicityBannersLink}
-					</ul>
+					</ul> */}
 				</div>
 
 				<div className="nav-item mb-lg-0 dropdown navElement3">

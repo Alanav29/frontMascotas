@@ -1,26 +1,26 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import getLostPet from "../utils/lostPets/getLostPet";
+// import getLostPet from "../../utils/lostPets/getLostPet";
 import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../components/lostPetDetail/comment";
+import Comment from "../lostPetDetail/comment";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUser } from "../features/userFeature";
-import { setChange } from "../features/changesCounterFeature";
-import delLostPet from "../utils/lostPets/delLostPet";
+import { selectUser } from "../../features/userFeature";
+import { setChange } from "../../features/changesCounterFeature";
+// import delLostPet from "../../utils/lostPets/delLostPet";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import getComments from "../utils/comments/getComments";
-import { selectChangesCounter } from "../features/changesCounterFeature";
-import postComment from "../utils/comments/postComment";
+// import getComments from "../../utils/comments/getComments";
+import { selectChangesCounter } from "../../features/changesCounterFeature";
+// import postComment from "../../utils/comments/postComment";
 
-const LostPetDetail = () => {
+const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	const { register, handleSubmit, reset } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 	const changesCounter = useSelector(selectChangesCounter);
 	const { lostPetId } = useParams();
-	const [lostPet, setLostPet] = useState({ image: "" });
+	const [pet, setPet] = useState({ image: "" });
 	const [comments, setComments] = useState([]);
 	let delButton = <></>;
 	let editButton = <></>;
@@ -28,10 +28,10 @@ const LostPetDetail = () => {
 
 	const fetchGetLostPet = async () => {
 		try {
-			const result = await getLostPet(lostPetId);
+			const result = await getPet(lostPetId);
 
 			if (result.status === 200) {
-				setLostPet(result.data);
+				setPet(result.data);
 			}
 		} catch (error) {
 			console.log(
@@ -64,9 +64,9 @@ const LostPetDetail = () => {
 		fetchComments();
 	}, [changesCounter]);
 
-	const fetchDeleteLostPet = async () => {
+	const fetchDeletePet = async () => {
 		try {
-			const result = await delLostPet(lostPetId, user.token);
+			const result = await delPet(lostPetId, user.token);
 
 			if (result.status === 200) {
 				navigate("/");
@@ -78,8 +78,8 @@ const LostPetDetail = () => {
 		}
 	};
 
-	const deleteLostPet = () => {
-		fetchDeleteLostPet();
+	const deletePet = () => {
+		fetchDeletePet();
 	};
 
 	const fetchPostComment = async (data) => {
@@ -102,25 +102,19 @@ const LostPetDetail = () => {
 
 	if (user.isAdmin) {
 		delButton = (
-			<button onClick={deleteLostPet} className="btn btn-danger me-4">
+			<button onClick={deletePet} className="btn btn-danger me-4">
 				Borrar mascota
 			</button>
 		);
 
 		editButton = (
-			<Link
-				to={`/mascota-perdida-edit/${lostPetId}`}
-				className="btn btn-primary"
-			>
+			<Link to={`${editUrl}${lostPetId}`} className="btn btn-primary">
 				Editar mascota
 			</Link>
 		);
-	} else if (user._id === lostPet.user_id) {
+	} else if (user._id === pet.user_id) {
 		editButton = (
-			<Link
-				to={`/mascota-perdida-edit/${lostPetId}`}
-				className="btn btn-primary"
-			>
+			<Link to={`${editUrl}${lostPetId}`} className="btn btn-primary">
 				Editar mascota
 			</Link>
 		);
@@ -157,23 +151,35 @@ const LostPetDetail = () => {
 		);
 	}
 
+	let dateType = "";
+	let date = pet.createAt;
+	if (pet.date_lost) {
+		dateType = "Fecha de perdida";
+		date = pet.date_lost;
+	} else if (pet.date_found) {
+		dateType = "Fecha en que se encontro";
+		date = pet.date_found;
+	} else {
+		dateType = "Fecha de subida";
+	}
+
 	return (
 		<div className="container my-4">
 			<div className="mb-3">
 				<div className="row g-0">
 					<div className="col-md-5 p-4 ps-0">
 						<img
-							src={lostPet.image.secure_url}
+							src={pet.image.secure_url}
 							className="img-fluid rounded-start"
 							alt="Pet image"
 						/>
 					</div>
 					<div className="col-md-7 p-4">
 						<div className="">
-							<h5 className="fs-5">{lostPet.name}</h5>
-							<p className="fs-6 mb-2">{lostPet.description}</p>
-							<h5 className="fs-5">Me perdi el :</h5>
-							<h6 className="fs-6">{lostPet.date_lost}</h6>
+							<h5 className="fs-5">{pet.name}</h5>
+							<p className="fs-6 mb-2">{pet.description}</p>
+							<h5 className="fs-5">{dateType}</h5>
+							<h6 className="fs-6">{date}</h6>
 							<div className="d-flex">
 								{delButton}
 								{editButton}
@@ -185,7 +191,7 @@ const LostPetDetail = () => {
 			<div>
 				<h5 className="my-4">Comentarios</h5>
 				{comments.map((comment) => (
-					<Comment key={comment._id} comment={comment} username={user.name} />
+					<Comment key={comment._id} comment={comment} />
 				))}
 				{commentForm}
 			</div>
@@ -193,4 +199,4 @@ const LostPetDetail = () => {
 	);
 };
 
-export default LostPetDetail;
+export default PetDetail;

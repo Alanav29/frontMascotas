@@ -1,25 +1,27 @@
 import { lostPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const putLostPet = (petData, id, token) => {
+const putLostPet = (data, id, token) => {
 	const putLostPetEndpoint = `${lostPetsBaseEndpoint}${id}`;
-
-	const petInfo = {
-		name: petData.name,
-		date_lost: petData.date_lost,
-		description: petData.description,
-		image: petData.image,
-		status: petData.status,
-	};
 
 	let myHeaders = new Headers();
 	myHeaders.append("Authorization", `Bearer ${token}`);
 
 	let formdata = new FormData();
-	formdata.append("name", petInfo.name);
-	formdata.append("date_lost", petInfo.date_lost);
-	formdata.append("description", petInfo.description);
-	formdata.append("status", petInfo.status);
-	formdata.append("image", petInfo.image[0]);
+	if (data.name) {
+		formdata.append("name", data.name);
+	}
+	if (data.date_lost) {
+		formdata.append("date_lost", data.date_lost);
+	}
+	if (data.description) {
+		formdata.append("description", data.description);
+	}
+	if (data.pet_status) {
+		formdata.append("pet_status", data.pet_status);
+	}
+	if (data.image) {
+		formdata.append("image", data.image[0]);
+	}
 
 	let requestOptions = {
 		method: "PUT",

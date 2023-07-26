@@ -1,10 +1,13 @@
-.dropdown-menu[data-bs-popper] {
+/* .dropdown-menu[data-bs-popper] {
 	top: 100%;
 	left: auto !important;
 	right: 0%;
 	margin-top: var(--bs-dropdown-spacer);
-}
+} */
 
+.nav-item {
+	font-size: 1.2rem !important;
+}
 .userOptionsDiv:hover {
 	color: green;
 }
@@ -21,8 +24,19 @@
 	order: 2;
 }
 
+.navElement2 .dropdown-menu[data-bs-popper] {
+	position: relative;
+}
+
 .navElement3 {
 	order: 3;
+}
+
+.navElement3 .dropdown-menu[data-bs-popper] {
+	top: 100%;
+	left: auto !important;
+	right: 0%;
+	margin-top: var(--bs-dropdown-spacer);
 }
 
 .navElement4 {

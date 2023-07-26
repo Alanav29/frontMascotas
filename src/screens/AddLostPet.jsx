@@ -19,16 +19,19 @@ const AddLostPet = () => {
 	};
 
 	const fetchPostLostPet = async (data) => {
-		try {
-			const result = await postLostPet(data, user._id, user.token);
+		let res;
 
-			if (result.status === 201) {
-				navigate("/");
-				dispatch(setChange(1));
-				console.log("se agrego la mascota");
-			}
-		} catch (error) {
-			console.log("Ocurrio un error al agregar la mascota ", error.message);
+		await postLostPet(data, user._id, user.token)
+			.then((response) => response.text())
+			.then((result) => (res = JSON.parse(result)))
+			.catch((error) => {
+				console.log("Ocurrio un error al agregar la mascota ", error.message);
+			});
+
+		if (res._id) {
+			navigate(`/mascotas-perdidas/${res._id}`);
+			dispatch(setChange(1));
+			console.log("se agrego la mascota");
 		}
 	};
 
