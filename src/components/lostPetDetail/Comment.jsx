@@ -5,7 +5,7 @@ import delComment from "../../utils/comments/delComment";
 import { setChange } from "../../features/changesCounterFeature";
 
 /* eslint-disable react/prop-types */
-const Comment = ({ comment }) => {
+const Comment = ({ comment, username }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	let delButton = <></>;
@@ -39,7 +39,7 @@ const Comment = ({ comment }) => {
 		<div className="commentBox rounded d-flex flex-row mb-2">
 			<div className="me-auto ms-2 d-flex align-items-center">
 				{/* <h6 className="ms-3 mb-0 mt-1">{comment.user_name}</h6> */}
-				<p className="m-0 d-flex align-items-center me-auto">{comment.text}</p>
+				<p className="m-0 d-flex align-items-center me-auto">{username} dice:   {comment.text}</p>
 			</div>
 			{delButton}
 		</div>
