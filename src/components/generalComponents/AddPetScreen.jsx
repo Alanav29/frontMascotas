@@ -78,7 +78,7 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 				/>
 			</>
 		);
-	}
+	} 
 
 	return (
 		<div className="container my-4 d-flex flex-column justify-content-center">
