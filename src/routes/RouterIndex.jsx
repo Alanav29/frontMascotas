@@ -13,9 +13,10 @@ import LostPetEdit from "../screens/LostPetEdit";
 import AddShelteredPet from "../screens/AddShelteredPet";
 import ShelteredPetDetail from "../screens/ShelteredPetDetail";
 import PetsForAdoption from "../screens/PetsForAdoption";
-import AddAdoptionPet from '../screens/AddAdoptionPet.jsx'
-import AdoptionPetDetail from '../screens/AdoptionPetDetail'
-import AdoptionPetEdit from '../screens/AdoptionPetEdit'
+import AddAdoptionPet from "../screens/AddAdoptionPet.jsx";
+import AdoptionPetDetail from "../screens/AdoptionPetDetail";
+import AdoptionPetEdit from "../screens/AdoptionPetEdit";
+import ShelteredPetEdit from "../screens/ShelteredPetEdit";
 
 export const RouterIndex = () => {
 	return (
@@ -23,18 +24,31 @@ export const RouterIndex = () => {
 			<Route path="/" element={<Home />} />
 			<Route path="/mascotas-perdidas" element={<LostPets />} />
 			<Route path="/mascotas-perdidas/:petId" element={<LostPetDetail />} />
-			<Route path="/mascota-perdida-edit/:lostPetId" element={<LostPetEdit />}/>
+			<Route path="/mascota-perdida-edit/:petId" element={<LostPetEdit />} />
 			<Route path="/add-lost-pet" element={<AddLostPet />} />
 
 			<Route path="/mascotas-resguardadas" element={<ShelteredPets />} />
-			<Route path="/mascotas-resguardadas/:petId" element={<ShelteredPetDetail />}/>
+			<Route
+				path="/mascotas-resguardadas/:petId"
+				element={<ShelteredPetDetail />}
+			/>
+			<Route
+				path="/mascota-resguardada-edit/:petId"
+				element={<ShelteredPetEdit />}
+			/>
 			<Route path="/add-sheltered-pet" element={<AddShelteredPet />} />
-			
+
 			<Route path="/mascotas-en-adopcion" element={<PetsForAdoption />} />
-			<Route path="/mascotas-en-adopcion/:petId" element={<AdoptionPetDetail />} />
-			<Route path="/mascota-en-adopcion-edit/:petId" element={<AdoptionPetEdit />}/>
+			<Route
+				path="/mascotas-en-adopcion/:petId"
+				element={<AdoptionPetDetail />}
+			/>
+			<Route
+				path="/mascota-en-adopcion-edit/:petId"
+				element={<AdoptionPetEdit />}
+			/>
 			<Route path="/add-adoption-pet" element={<AddAdoptionPet />} />
-			
+
 			<Route path="/signIn" element={<SignIn />} />
 			<Route path="/signUp" element={<SignUp />} />
 			<Route path="/user-data" element={<UserData />} />

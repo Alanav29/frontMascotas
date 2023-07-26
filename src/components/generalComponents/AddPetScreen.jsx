@@ -78,7 +78,7 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 				/>
 			</>
 		);
-	} 
+	}
 
 	return (
 		<div className="container my-4 d-flex flex-column justify-content-center">
@@ -120,7 +120,7 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 				{dateInput}
 
 				<button className="btn btn-success mt-3" type="submit">
-					Registra mascota
+					Registrar mascota
 				</button>
 			</form>
 			<ToastContainer />
