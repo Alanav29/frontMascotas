@@ -4,8 +4,8 @@ import "../../styles/PetsScreens.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userFeature";
-import AddPetCard from "./AddPetCard";
 import { selectChangesCounter } from "../../features/changesCounterFeature";
+import AddPetCard from "./AddPetCard";
 
 const PetsGeneral = ({ getPets, url, delPet, cardUrl }) => {
 	const [pets, setPets] = useState([]);

@@ -6,9 +6,8 @@ import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
 import AddLostPet from "../screens/AddLostPet";
 import UserData from "../screens/UserData";
-import PublicityBanners from "../screens/PublicityBanners";
 import LostPetDetail from "../screens/LostPetDetail";
-import PublicityDetail from "../screens/PublicityDetail";
+import AdvertisementDetail from "../screens/AdvertisementDetail";
 import LostPetEdit from "../screens/LostPetEdit";
 import AddShelteredPet from "../screens/AddShelteredPet";
 import ShelteredPetDetail from "../screens/ShelteredPetDetail";
@@ -17,6 +16,8 @@ import AddAdoptionPet from "../screens/AddAdoptionPet.jsx";
 import AdoptionPetDetail from "../screens/AdoptionPetDetail";
 import AdoptionPetEdit from "../screens/AdoptionPetEdit";
 import ShelteredPetEdit from "../screens/ShelteredPetEdit";
+import AddAdvertisement from "../screens/AddAdvertisement";
+import Advertisements from "../screens/Advertisements";
 
 export const RouterIndex = () => {
 	return (
@@ -52,11 +53,13 @@ export const RouterIndex = () => {
 			<Route path="/signIn" element={<SignIn />} />
 			<Route path="/signUp" element={<SignUp />} />
 			<Route path="/user-data" element={<UserData />} />
-			<Route path="/publicity-banners" element={<PublicityBanners />} />
+
+			<Route path="/advertisements" element={<Advertisements />} />
 			<Route
-				path="/publicity-banners/:publicityId"
-				element={<PublicityDetail />}
+				path="/advertisements/:advertisementId"
+				element={<AdvertisementDetail />}
 			/>
+			<Route path="/add-advertisement" element={<AddAdvertisement />} />
 		</Routes>
 	);
 };

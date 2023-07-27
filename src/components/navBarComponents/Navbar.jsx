@@ -22,7 +22,7 @@ const Navbar = () => {
 			// 		Anuncios
 			// 	</Link>
 			// </li>
-			<Link className="dropdown-item" to="/publicity-banners">
+			<Link className="dropdown-item" to="/advertisements">
 				Anuncios
 			</Link>
 		);
