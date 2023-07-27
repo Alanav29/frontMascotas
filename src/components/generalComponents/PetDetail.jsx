@@ -1,24 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-// import getLostPet from "../../utils/lostPets/getLostPet";
-import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../lostPetDetail/comment";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../features/userFeature";
-import { setChange } from "../../features/changesCounterFeature";
+import { setChange, selectChangesCounter } from "../../features/changesCounterFeature";
+import Comment from "./Comment";
+
+// import getLostPet from "../../utils/lostPets/getLostPet";
 // import delLostPet from "../../utils/lostPets/delLostPet";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-// import getComments from "../../utils/comments/getComments";
-import { selectChangesCounter } from "../../features/changesCounterFeature";
-// import postComment from "../../utils/comments/postComment";
+// import {getComments, postComment, delComment} from "./../../utils/comments"
 
 const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
+	
 	const { register, handleSubmit, reset } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
-	const changesCounter = useSelector(selectChangesCounter);
+	let changesCounter = useSelector(selectChangesCounter);
 	const { petId } = useParams();
 	const [pet, setPet] = useState({ image: "" });
 	const [comments, setComments] = useState([]);
@@ -62,7 +61,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 	useEffect(() => {
 		fetchComments();
-	}, [changesCounter]);
+	} , [changesCounter] );
 
 	const fetchDeletePet = async () => {
 		try {
@@ -99,11 +98,13 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	}
 
 	const fetchPostComment = async (data) => {
+		const {text, postId, postType} = data
 		try {
-			const result = await postComment(data, petId, postType, user.token);
+			const result = await postComment(text, postId, postType, user.token);
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
+				console.log(result.data)
 				console.log("se agrego comentario");
 			}
 		} catch (error) {

@@ -6,7 +6,7 @@ const getAdoptionPet = (adoptionPetId) => {
 		method: "get",
 		maxBodyLength: Infinity,
 		url: `${adoptionPetsBaseEndpoint}${adoptionPetId}`,
-		headers: {},
+		headers: {}
 	};
 
 	const getAdoptionPetRequest = () => axios(config);
