@@ -4,6 +4,8 @@ import getComments from "../utils/comments/getComments";
 import postComment from "../utils/comments/postComment";
 import getAdoptionPet from "../utils/adoptionPets/getAdoptionPet";
 
+
+
 const AdoptionPetDetail = () => {
 	return (
 		<PetDetail

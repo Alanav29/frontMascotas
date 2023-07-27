@@ -2,11 +2,11 @@ import axios from "axios";
 import qs from "qs";
 import { commentsBaseEndpoint } from "../../config/apiRoutes";
 
-const postComment = (commentData, petId, postType, token) => {
+const postComment = (commentData, postId, postType, token) => {
 	let data = qs.stringify({
 		text: commentData.text,
-		postId: petId,
-		postType: postType,
+		postId,
+		postType,
 	});
 
 	let config = {
