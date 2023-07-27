@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../features/userFeature";
-import { setChange, selectChangesCounter } from "../../features/changesCounterFeature";
+import {
+	setChange,
+	selectChangesCounter,
+} from "../../features/changesCounterFeature";
 import Comment from "./Comment";
 
 // import getLostPet from "../../utils/lostPets/getLostPet";
@@ -12,7 +15,6 @@ import Comment from "./Comment";
 // import {getComments, postComment, delComment} from "./../../utils/comments"
 
 const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
-	
 	const { register, handleSubmit, reset } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -61,7 +63,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 	useEffect(() => {
 		fetchComments();
-	} , [changesCounter] );
+	}, [changesCounter]);
 
 	const fetchDeletePet = async () => {
 		try {
@@ -98,13 +100,13 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	}
 
 	const fetchPostComment = async (data) => {
-		const {text, postId, postType} = data
+		const { text, postId } = data;
 		try {
 			const result = await postComment(text, postId, postType, user.token);
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
-				console.log(result.data)
+				console.log(result.data);
 				console.log("se agrego comentario");
 			}
 		} catch (error) {
