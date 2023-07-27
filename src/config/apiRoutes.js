@@ -8,9 +8,11 @@ const userSignInEndpoint = `${baseGeneralURL}users/login`;
 
 const lostPetsBaseEndpoint = `${baseGeneralURL}lostPets/`;
 const shelteredPetsBaseEndpoint = `${baseGeneralURL}shelteredPets/`;
-const adoptionPetsBaseEndpoint = `${baseGeneralURL}adoptionPets/`
+const adoptionPetsBaseEndpoint = `${baseGeneralURL}adoptionPets/`;
 
 const commentsBaseEndpoint = `${baseGeneralURL}comments/`;
+
+const advertisementsBaseEndpoint = `${baseGeneralURL}advertisements/`;
 
 export {
 	usersBaseEndpoint,
@@ -19,5 +21,6 @@ export {
 	lostPetsBaseEndpoint,
 	commentsBaseEndpoint,
 	shelteredPetsBaseEndpoint,
-	adoptionPetsBaseEndpoint
+	adoptionPetsBaseEndpoint,
+	advertisementsBaseEndpoint,
 };

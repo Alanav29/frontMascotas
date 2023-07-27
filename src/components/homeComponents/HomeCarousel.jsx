@@ -46,7 +46,7 @@ const HomeCarousel = () => {
 				</div>
 				<div className="carousel-inner">
 					<Link
-						to={`publicity-banners/${banners.bannerOne.id}`}
+						to={`advertisements/${banners.bannerOne.id}`}
 						className="carousel-item active"
 					>
 						<img
@@ -56,7 +56,7 @@ const HomeCarousel = () => {
 						/>
 					</Link>
 					<Link
-						to={`publicity-banners/${banners.bannerTwo.id}`}
+						to={`advertisements/${banners.bannerTwo.id}`}
 						className="carousel-item active"
 					>
 						<img
@@ -66,7 +66,7 @@ const HomeCarousel = () => {
 						/>
 					</Link>
 					<Link
-						to={`publicity-banners/${banners.bannerThree.id}`}
+						to={`advertisements/${banners.bannerThree.id}`}
 						className="carousel-item active"
 					>
 						<img
