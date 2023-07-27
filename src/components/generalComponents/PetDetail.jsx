@@ -100,9 +100,8 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	}
 
 	const fetchPostComment = async (data) => {
-		const { text, postId } = data;
 		try {
-			const result = await postComment(text, postId, postType, user.token);
+			const result = await postComment(data, petId, postType, user.token);
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
