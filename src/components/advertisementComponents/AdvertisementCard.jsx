@@ -36,7 +36,9 @@ const AdvertisementCard = ({ advertisement, cardUrl, delAdvertisement }) => {
 						alt="..."
 					/>
 					<div className="card-body">
-						<h1 className="card-title fs-4 colorThree">{advertisement.name}</h1>
+						<h1 className="card-title fs-4 colorThree">
+							{advertisement.title}
+						</h1>
 						<h2 className="card-title fs-5">Creado el</h2>
 						<p className="card-title fs-6">{advertisement.createdAt}</p>
 						<p className="card-title fs-6">{advertisement.description}</p>

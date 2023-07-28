@@ -36,10 +36,13 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 	}
 
 	let dateType = "";
+	let date = pet.createdAt;
 	if (pet.date_lost) {
 		dateType = "Fecha de perdida";
+		date = pet.date_lost;
 	} else if (pet.date_found) {
 		dateType = "Fecha en que se encontro";
+		date = pet.date_found;
 	}
 
 	return (
@@ -49,7 +52,7 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 				<div className="card-body">
 					<h1 className="card-title fs-4 colorThree">{pet.name}</h1>
 					<h2 className="card-title fs-5">{dateType}</h2>
-					<p className="card-title fs-6">{pet.date_lost}</p>
+					<p className="card-title fs-6">{date}</p>
 					<p className="card-title fs-6">{pet.description}</p>
 					<Link
 						to={`${cardUrl}${pet._id}`}

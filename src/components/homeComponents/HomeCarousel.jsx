@@ -1,24 +1,8 @@
-import { Link } from "react-router-dom";
+/* eslint-disable react/prop-types */
 import "../../styles/HomeCarousel.css";
+import AdvertisementBanner from "../advertisementComponents/AdvertisementBanner";
 
-const HomeCarousel = () => {
-	const banners = {
-		bannerOne: {
-			image:
-				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
-			id: "1",
-		},
-		bannerTwo: {
-			image:
-				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
-			id: "2",
-		},
-		bannerThree: {
-			image:
-				"https://res.cloudinary.com/dtyazhppg/image/upload/v1689925580/samples/banner1_te4ibq.jpg",
-			id: "3",
-		},
-	};
+const HomeCarousel = ({ advertisements }) => {
 	return (
 		<div className="carouselHeight">
 			<div id="carouselExampleIndicators" className="carousel slide">
@@ -45,36 +29,21 @@ const HomeCarousel = () => {
 					/>
 				</div>
 				<div className="carousel-inner">
-					<Link
-						to={`advertisements/${banners.bannerOne.id}`}
-						className="carousel-item active"
-					>
-						<img
-							src={banners.bannerOne.image}
-							className="d-block w-100"
-							alt="..."
-						/>
-					</Link>
-					<Link
-						to={`advertisements/${banners.bannerTwo.id}`}
-						className="carousel-item active"
-					>
-						<img
-							src={banners.bannerThree.image}
-							className="d-block w-100"
-							alt="..."
-						/>
-					</Link>
-					<Link
-						to={`advertisements/${banners.bannerThree.id}`}
-						className="carousel-item active"
-					>
-						<img
-							src={banners.bannerThree.image}
-							className="d-block w-100"
-							alt="..."
-						/>
-					</Link>
+					<AdvertisementBanner
+						key={advertisements[0]._id}
+						advertisement={advertisements[0]}
+						initActive={true}
+					/>
+					<AdvertisementBanner
+						key={advertisements[1]._id}
+						advertisement={advertisements[1]}
+						initActive={false}
+					/>
+					<AdvertisementBanner
+						key={advertisements[2]._id}
+						advertisement={advertisements[2]}
+						initActive={false}
+					/>
 				</div>
 				<button
 					className="carousel-control-prev"
