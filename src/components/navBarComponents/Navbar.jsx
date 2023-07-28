@@ -17,11 +17,6 @@ const Navbar = () => {
 
 	if (user.isAdmin) {
 		publicityBannersLink = (
-			// <li className="nav-item">
-			// 	<Link className="nav-link" to="/publicity-banners">
-			// 		Anuncios
-			// 	</Link>
-			// </li>
 			<Link className="dropdown-item" to="/advertisements">
 				Anuncios
 			</Link>
@@ -79,32 +74,9 @@ const Navbar = () => {
 									Mascotas en Adopción
 								</Link>
 							</li>
-							<li>{publicityBannersLink}</li>
 						</ul>
 					</li>
-
-					{/* <ul className="navbar-nav">
-						<li className="nav-item">
-							<Link
-								className="nav-link"
-								aria-current="page"
-								to="/mascotas-perdidas"
-							>
-								Mascotas Perdidas
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/mascotas-resguardadas">
-								Mascotas Resguardadas
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/mascotas-en-adopcion">
-								Mascotas en Adopción
-							</Link>
-						</li>
-						{publicityBannersLink}
-					</ul> */}
+					<li className="nav-item ms-md-3">{publicityBannersLink}</li>
 				</div>
 
 				<div className="nav-item mb-lg-0 dropdown navElement3">

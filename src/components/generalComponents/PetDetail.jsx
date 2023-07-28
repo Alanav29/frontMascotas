@@ -84,7 +84,7 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 	};
 
 	let dateType = "";
-	let date = pet.createAt;
+	let date = pet.createdAt;
 	let postType = "";
 	if (pet.date_lost) {
 		dateType = "Fecha de perdida";

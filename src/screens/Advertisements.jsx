@@ -13,7 +13,7 @@ const Advertisements = () => {
 	const changesCounter = useSelector(selectChangesCounter);
 
 	useEffect(() => {
-		const fetchLostAdvertisementsData = async () => {
+		const fetchAdvertisementsData = async () => {
 			try {
 				const result = await getAllAdvertisements();
 
@@ -21,13 +21,10 @@ const Advertisements = () => {
 					setAdvertisements(result.data);
 				}
 			} catch (error) {
-				console.log(
-					"Ocurrio un error al traer las mascotas perdidas",
-					error.message
-				);
+				console.log("Ocurrio un error al traer los anuncios", error.message);
 			}
 		};
-		fetchLostAdvertisementsData();
+		fetchAdvertisementsData();
 	}, [changesCounter]);
 
 	let pageContent = <h1>Solo para administradores</h1>;
