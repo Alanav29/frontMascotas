@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectChangesCounter } from "../features/changesCounterFeature";
 import getAllAdvertisements from "../utils/advertisements/getAdvertisements";
+import "../styles/Home.css";
 
 const Home = () => {
 	const [advertisements, setAdvertisements] = useState([
@@ -33,12 +34,14 @@ const Home = () => {
 
 	return (
 		<>
-			<div className="d-flex justify-content-center my-4">
-				<HomeCarousel advertisements={advertisements} />
-			</div>
-			<PetButtonsHome />
-			<div className="d-flex justify-content-center my-4">
+			<div className="d-flex justify-content-center px-4 py-4 homeDesc">
 				<HomeDescription />
+			</div>
+			<div className="homeButtons">
+				<PetButtonsHome />
+			</div>
+			<div className="d-flex justify-content-center py-4 ">
+				<HomeCarousel advertisements={advertisements} />
 			</div>
 		</>
 	);

@@ -53,7 +53,9 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 					<h1 className="card-title fs-4 colorThree">{pet.name}</h1>
 					<h2 className="card-title fs-5">{dateType}</h2>
 					<p className="card-title fs-6">{date}</p>
-					<p className="card-title fs-6">{pet.description}</p>
+					<p className="card-title fs-6 overflow-y-scroll petDesc">
+						{pet.description}
+					</p>
 					<Link
 						to={`${cardUrl}${pet._id}`}
 						className="btn btn-warning text-white me-2"

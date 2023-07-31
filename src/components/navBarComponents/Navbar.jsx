@@ -17,17 +17,17 @@ const Navbar = () => {
 
 	if (user.isAdmin) {
 		publicityBannersLink = (
-			<Link className="dropdown-item" to="/advertisements">
+			<Link className="text-reset" to="/advertisements">
 				Anuncios
 			</Link>
 		);
 	}
 
 	return (
-		<nav className="navbar navbar-expand-md bg-body-tertiary">
+		<nav className="navbar navbar-expand-md bg-body-tertiary navColor">
 			<div className="container-fluid d-flex justify-content-start">
 				<button
-					className="navbar-toggler me-4 navElement4"
+					className="navbar-toggler navElement4"
 					type="button"
 					data-bs-toggle="collapse"
 					data-bs-target="#navbarNav"
@@ -37,7 +37,10 @@ const Navbar = () => {
 				>
 					<span className="navbar-toggler-icon" />
 				</button>
-				<Link to="/" className="navbar-brand me-lg-4 me-auto navElement1">
+				<Link
+					to="/"
+					className="navbar-brand me-lg-4 me-auto mx-auto mx-lg-0 navElement1"
+				>
 					App Mascotas
 				</Link>
 				<div

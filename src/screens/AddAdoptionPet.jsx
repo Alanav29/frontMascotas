@@ -3,7 +3,10 @@ import postAdoptionPet from "../utils/adoptionPets/postAdoptionPet";
 
 const AddAdoptionPet = () => {
 	return (
-		<AddPetScreen postPet={postAdoptionPet} petTypeUrl={"/mascotas-en-adopcion"} />
+		<AddPetScreen
+			postPet={postAdoptionPet}
+			petTypeUrl={"/mascotas-en-adopcion/"}
+		/>
 	);
 };
 

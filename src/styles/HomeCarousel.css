@@ -3,3 +3,8 @@
 	min-width: 250px;
 	max-width: 500px;
 }
+
+.carousel-inner img {
+	height: 100% !important;
+	max-height: 225px;
+}

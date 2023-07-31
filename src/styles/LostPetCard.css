@@ -1,4 +1,9 @@
 .lostPetCard {
 	max-width: 15rem;
 	min-width: 12rem;
+	height: 30rem;
+}
+
+.petDesc {
+	height: 7rem;
 }

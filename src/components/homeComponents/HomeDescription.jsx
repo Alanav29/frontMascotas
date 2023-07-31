@@ -4,7 +4,7 @@ const HomeDescription = () => {
 	return (
 		<div className="homeDesCard">
 			<img
-				src="https://res.cloudinary.com/dtyazhppg/image/upload/v1689925791/samples/banner2_ysllip.jpg"
+				src="https://res.cloudinary.com/dtyazhppg/image/upload/v1690766272/pets_banner_nykliu.png"
 				className="card-img"
 				alt="Dog with brown background"
 			/>
