@@ -5,6 +5,22 @@
 	margin-top: var(--bs-dropdown-spacer);
 } */
 
+a {
+	text-decoration: none;
+}
+
+.nav-item {
+	text-decoration: none;
+}
+
+.nav-item:hover {
+	color: grey;
+}
+
+.navColor {
+	background-color: var(--home-color) !important;
+}
+
 .nav-item {
 	font-size: 1.2rem !important;
 }
@@ -46,7 +62,7 @@
 	order: 4;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.navElement1 {
 		order: 2;
 	}

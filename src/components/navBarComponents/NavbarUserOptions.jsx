@@ -43,7 +43,7 @@ const NavbarUserOptions = () => {
 
 	return (
 		<>
-			<div className="d-flex flex-column">{optionSelected}</div>
+			<div className="d-flex flex-wrap flex-column">{optionSelected}</div>
 		</>
 	);
 };

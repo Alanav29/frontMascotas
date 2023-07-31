@@ -1,8 +1,8 @@
 .petButtonHome {
-	width: 30vw;
+	width: 28vw;
 	margin: 2vw;
 	max-width: 180px;
-	height: 30vw;
+	height: 28vw;
 	max-height: 180px;
 	border-radius: 10%;
 	display: flex;
@@ -10,6 +10,11 @@
 	align-items: center;
 	color: white;
 	text-decoration: none !important;
+	font-size: 1.5rem;
+}
+
+.petButtonHome:hover {
+	transform: scale(1.1);
 }
 
 .lostPetsBtnHome {
@@ -22,4 +27,10 @@
 
 .adoptionPetsBtnHome {
 	background-color: var(--color-three);
+}
+
+@media (max-width: 576px) {
+	.petButtonHome {
+		font-size: 1rem;
+	}
 }

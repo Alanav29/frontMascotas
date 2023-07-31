@@ -64,15 +64,15 @@ const AdvertisementDetail = () => {
 	return (
 		<div className="container my-4">
 			<div className="mb-3">
-				<div className="row g-0">
-					<div className="col-md-5 p-4 ps-0">
+				<div className="d-flex flex-wrap">
+					<div className="d-flex">
 						<img
 							src={advertisement.image.secure_url}
-							className="img-fluid rounded-start"
+							className="w-75 mx-auto"
 							alt="Advertisement image"
 						/>
 					</div>
-					<div className="col-md-7 p-4">
+					<div className="w-75 mx-auto">
 						<div className="">
 							<h5 className="fs-5">{advertisement.title}</h5>
 							<p className="fs-6 mb-2">{advertisement.description}</p>

@@ -67,13 +67,13 @@ const PetsGeneral = ({ getPets, url, delPet, cardUrl }) => {
 				<div className="d-flex align-items-center ms-4 me-2">Ordenar por</div>
 				<div
 					onClick={mostRecentFilter}
-					className={`m-2 d-flex align-items-center btn ${toggleMostRecent}`}
+					className={`m-2 d-flex align-items-center rounded-5 btn ${toggleMostRecent}`}
 				>
 					Más recientes
 				</div>
 				<div
 					onClick={lessRecentFilter}
-					className={`m-2 d-flex align-items-center btn ${toggleLessRecent}`}
+					className={`m-2 d-flex align-items-center rounded-5 btn ${toggleLessRecent}`}
 				>
 					Más antiguas
 				</div>
