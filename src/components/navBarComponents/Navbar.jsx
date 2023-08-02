@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userFeature";
 import NavbarUserOptions from "./NavbarUserOptions";
 import "../../styles/Navbar.css";
+import logoImg from "../../assets/hogarPeludoLogo.svg";
 
 const Navbar = () => {
 	const user = useSelector(selectUser);
@@ -39,9 +40,9 @@ const Navbar = () => {
 				</button>
 				<Link
 					to="/"
-					className="navbar-brand me-lg-4 me-auto mx-auto mx-lg-0 navElement1"
+					className="p-0 me-lg-4 me-auto mx-auto mx-lg-0 navElement1"
 				>
-					App Mascotas
+					<img className="navLogo" src={logoImg} />
 				</Link>
 				<div
 					className="collapse navbar-collapse justify-content-end me-4 navElement2"

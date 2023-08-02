@@ -16,7 +16,7 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
-				console.log("se borro mascota perdida");
+				console.log("se borro mascota");
 			}
 		} catch (error) {
 			console.log("Ocurrio un error al borrar la mascota ", error.message);
@@ -48,7 +48,7 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 	return (
 		<>
 			<div className="card m-3 lostPetCard">
-				<img src={pet.image.secure_url} className="card-img-top" alt="..." />
+				<img src={pet.image.secure_url} className="petCardImg" alt="..." />
 				<div className="card-body">
 					<h1 className="card-title fs-4 colorThree">{pet.name}</h1>
 					<h2 className="card-title fs-5">{dateType}</h2>

@@ -5,6 +5,10 @@
 	margin-top: var(--bs-dropdown-spacer);
 } */
 
+.navLogo {
+	height: 2rem;
+}
+
 a {
 	text-decoration: none;
 }
