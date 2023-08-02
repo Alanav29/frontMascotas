@@ -7,10 +7,18 @@ import { useNavigate } from "react-router-dom";
 import { setChange } from "../../features/changesCounterFeature";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState, createRef } from "react";
+import { Cropper } from "react-cropper";
+import "cropperjs/dist/cropper.css";
 
 const AddAdvertisementScreen = () => {
 	const { register, handleSubmit } = useForm();
 	const user = useSelector(selectUser);
+	const [imgURL, setImgURL] = useState(
+		"https://res.cloudinary.com/dtyazhppg/image/upload/v1690938856/petsAddImg_f5hkux.jpg"
+	);
+	let cropData = "#";
+	const cropperRef = createRef();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const notify = () => {
@@ -19,10 +27,10 @@ const AddAdvertisementScreen = () => {
 		});
 	};
 
-	const fetchPostAdvertisement = async (data) => {
+	const fetchPostAdvertisement = async (data, image) => {
 		let res;
 
-		await postAdvertisement(data, user.token)
+		await postAdvertisement(data, image, user.token)
 			.then((response) => response.text())
 			.then((result) => (res = JSON.parse(result)))
 			.catch((error) => {
@@ -37,8 +45,16 @@ const AddAdvertisementScreen = () => {
 	};
 
 	const addAdvertisement = (data) => {
+		let cropedImg = getCropData();
 		notify();
-		fetchPostAdvertisement(data);
+		fetchPostAdvertisement(data, cropedImg);
+	};
+
+	const getCropData = () => {
+		if (typeof cropperRef.current?.cropper !== "undefined") {
+			cropData = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+		}
+		return cropData;
 	};
 
 	let pageContent = <h1>Solo para administradores</h1>;
@@ -47,15 +63,32 @@ const AddAdvertisementScreen = () => {
 		pageContent = (
 			<>
 				<h1 className="mb-3">Agregar anuncio</h1>
+				<Cropper
+					ref={cropperRef}
+					style={{ height: 250, width: "100%" }}
+					scale={1}
+					aspectRatio={3 / 1}
+					src={imgURL}
+					cropBoxResizable={true}
+					viewMode={2}
+					minCropBoxHeight={50}
+					background={false}
+					autoCropArea={1}
+					checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+					guides={true}
+				/>
 				<form className="d-block" onSubmit={handleSubmit(addAdvertisement)}>
 					<label className="form-label" htmlFor="advertisementImgInput">
 						Imagen
 					</label>
 					<input
-						{...register("image")}
+						onChange={(e) => {
+							setImgURL(URL.createObjectURL(e.target.files[0]));
+						}}
 						type="file"
 						className="form-control mb-3"
 						id="advertisementImgInput"
+						required
 					/>
 
 					<label className="form-label" htmlFor="advertisementTitleInput">

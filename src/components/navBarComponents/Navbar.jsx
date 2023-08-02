@@ -25,7 +25,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-md bg-body-tertiary navColor">
+		<nav className="navbar px-3 navbar-expand-md bg-body-tertiary">
 			<div className="container-fluid d-flex justify-content-start">
 				<button
 					className="navbar-toggler navElement4"

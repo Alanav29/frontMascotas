@@ -105,7 +105,6 @@ const PetDetail = ({ delPet, getComments, postComment, getPet, editUrl }) => {
 
 			if (result.status === 200) {
 				dispatch(setChange(1));
-				console.log(result.data);
 				console.log("se agrego comentario");
 			}
 		} catch (error) {

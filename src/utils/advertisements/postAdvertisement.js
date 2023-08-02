@@ -1,10 +1,10 @@
 import { advertisementsBaseEndpoint } from "../../config/apiRoutes";
 
-const postAdvertisement = (advertisementData, token) => {
+const postAdvertisement = (advertisementData, image, token) => {
 	const advertisementInfo = {
 		title: advertisementData.title,
 		description: advertisementData.description,
-		image: advertisementData.image,
+		image: image,
 	};
 
 	let myHeaders = new Headers();
@@ -13,7 +13,7 @@ const postAdvertisement = (advertisementData, token) => {
 	let formdata = new FormData();
 	formdata.append("title", advertisementInfo.title);
 	formdata.append("description", advertisementInfo.description);
-	formdata.append("image", advertisementInfo.image[0]);
+	formdata.append("image", image);
 
 	let requestOptions = {
 		method: "POST",
