@@ -1,11 +1,11 @@
 import { adoptionPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const postAdoptionPet = (petData, user_id, token) => {
+const postAdoptionPet = (petData, user_id, image, token) => {
 	const petInfo = {
 		name: petData.name,
 		date_lost: petData.date_lost,
 		description: petData.description,
-		image: petData.image,
+		image: image,
 	};
 
 	let myHeaders = new Headers();
@@ -16,7 +16,7 @@ const postAdoptionPet = (petData, user_id, token) => {
 	formdata.append("user_id", user_id);
 	formdata.append("date_lost", petInfo.date_lost);
 	formdata.append("description", petInfo.description);
-	formdata.append("image", petInfo.image[0]);
+	formdata.append("image", petInfo.image);
 
 	let requestOptions = {
 		method: "POST",

@@ -48,7 +48,11 @@ const PetCard = ({ pet, delPet, cardUrl }) => {
 	return (
 		<>
 			<div className="card m-3 lostPetCard">
-				<img src={pet.image.secure_url} className="petCardImg" alt="..." />
+				<img
+					src={pet.image.secure_url}
+					className="petCardImg rounded-top"
+					alt="..."
+				/>
 				<div className="card-body">
 					<h1 className="card-title fs-4 colorThree">{pet.name}</h1>
 					<h2 className="card-title fs-5">{dateType}</h2>

@@ -1,6 +1,6 @@
 import { shelteredPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const putShelteredPet = (data, id, token) => {
+const putShelteredPet = (data, id, image, token) => {
 	const putShelteredPetEndpoint = `${shelteredPetsBaseEndpoint}${id}`;
 
 	let myHeaders = new Headers();
@@ -19,8 +19,8 @@ const putShelteredPet = (data, id, token) => {
 	if (data.pet_status) {
 		formdata.append("pet_status", data.pet_status);
 	}
-	if (data.image) {
-		formdata.append("image", data.image[0]);
+	if (image) {
+		formdata.append("image", image);
 	}
 
 	let requestOptions = {

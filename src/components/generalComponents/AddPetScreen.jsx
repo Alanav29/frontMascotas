@@ -7,8 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { setChange } from "../../features/changesCounterFeature";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createRef, useState } from "react";
+import "cropperjs/dist/cropper.css";
+import { Cropper } from "react-cropper";
+// import { ReactCropperElement } from "react-cropper";
 
-const AddPetScreen = ({ postPet, petTypeUrl }) => {
+const TrialAddPetScreen = ({ postPet, petTypeUrl }) => {
+	// const [petImage, setPetImage] = useState();
+	let cropData = "#";
+	const cropperRef = createRef();
 	const { register, handleSubmit } = useForm();
 	const user = useSelector(selectUser);
 	const navigate = useNavigate();
@@ -19,10 +26,10 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 		});
 	};
 
-	const fetchPostPet = async (data) => {
+	const fetchPostPet = async (data, cropedImg) => {
 		let res;
 
-		await postPet(data, user._id, user.token)
+		await postPet(data, user._id, cropedImg, user.token)
 			.then((response) => response.text())
 			.then((result) => (res = JSON.parse(result)))
 			.catch((error) => {
@@ -37,8 +44,9 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 	};
 
 	const addPet = (data) => {
+		let cropedImg = getCropData();
 		notify();
-		fetchPostPet(data);
+		fetchPostPet(data, cropedImg);
 	};
 
 	let dateInput = <></>;
@@ -80,52 +88,85 @@ const AddPetScreen = ({ postPet, petTypeUrl }) => {
 		);
 	}
 
+	const [imgURL, setImgURL] = useState(
+		"https://res.cloudinary.com/dtyazhppg/image/upload/v1690938856/petsAddImg_f5hkux.jpg"
+	);
+	const getCropData = () => {
+		if (typeof cropperRef.current?.cropper !== "undefined") {
+			cropData = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+		}
+		return cropData;
+	};
+
 	return (
-		<div className="container my-4 d-flex flex-column justify-content-center">
+		<div className="container my-4">
 			<h1 className="mb-3">Agregar mascota {petType}</h1>
-			<form className="d-block" onSubmit={handleSubmit(addPet)}>
-				<label className="form-label" htmlFor="petImgInput">
-					Foto de mascota
-				</label>
-				<input
-					{...register("image")}
-					type="file"
-					className="form-control mb-3"
-					id="petImgInput"
-				/>
+			<div className="row">
+				<div className="col-md-5">
+					<Cropper
+						ref={cropperRef}
+						style={{ height: 250, width: "100%" }}
+						scale={1}
+						aspectRatio={12 / 9}
+						src={imgURL}
+						cropBoxResizable={true}
+						viewMode={2}
+						minCropBoxHeight={50}
+						background={false}
+						autoCropArea={1}
+						checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+						guides={true}
+					/>
+				</div>
+				<div className="col-md-7">
+					<form className="d-block" onSubmit={handleSubmit(addPet)}>
+						<label className="form-label" htmlFor="petImgInput">
+							Foto de mascota
+						</label>
+						<input
+							onChange={(e) => {
+								setImgURL(URL.createObjectURL(e.target.files[0]));
+							}}
+							type="file"
+							className="form-control mb-3"
+							id="petImgInput"
+							required
+						/>
 
-				<label className="form-label" htmlFor="petNameInput">
-					Nombre de mascota
-				</label>
-				<input
-					{...register("name")}
-					className="form-control mb-3"
-					type="text"
-					placeholder="Name"
-					id="petNameInput"
-					required
-				/>
+						<label className="form-label" htmlFor="petNameInput">
+							Nombre de mascota
+						</label>
+						<input
+							{...register("name")}
+							className="form-control mb-3"
+							type="text"
+							placeholder="Name"
+							id="petNameInput"
+							required
+						/>
 
-				<label className="form-label" htmlFor="petDescInput">
-					Descripción
-				</label>
-				<textarea
-					{...register("description")}
-					className="form-control mb-3"
-					aria-label="With textarea"
-					id="petDescInput"
-					placeholder="Describe a tu mascota"
-				></textarea>
+						<label className="form-label" htmlFor="petDescInput">
+							Descripción
+						</label>
+						<textarea
+							{...register("description")}
+							className="form-control mb-3"
+							aria-label="With textarea"
+							id="petDescInput"
+							placeholder="Describe a tu mascota"
+						></textarea>
 
-				{dateInput}
+						{dateInput}
 
-				<button className="btn btn-success mt-3" type="submit">
-					Registrar mascota
-				</button>
-			</form>
+						<button className="btn btn-success mt-3" type="submit">
+							Registrar mascota
+						</button>
+					</form>
+				</div>
+			</div>
 			<ToastContainer />
 		</div>
 	);
 };
 
-export default AddPetScreen;
+export default TrialAddPetScreen;

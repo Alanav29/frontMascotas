@@ -18,7 +18,6 @@ import AdoptionPetEdit from "../screens/AdoptionPetEdit";
 import ShelteredPetEdit from "../screens/ShelteredPetEdit";
 import AddAdvertisement from "../screens/AddAdvertisement";
 import Advertisements from "../screens/Advertisements";
-import TrialAddPet from "../screens/TrialAddPet";
 
 export const RouterIndex = () => {
 	return (
@@ -61,8 +60,6 @@ export const RouterIndex = () => {
 				element={<AdvertisementDetail />}
 			/>
 			<Route path="/add-advertisement" element={<AddAdvertisement />} />
-
-			<Route path="/add-pet" element={<TrialAddPet />} />
 		</Routes>
 	);
 };

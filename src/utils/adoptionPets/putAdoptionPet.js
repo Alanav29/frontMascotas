@@ -1,6 +1,6 @@
 import { adoptionPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const putAdoptionPet = (data, id, token) => {
+const putAdoptionPet = (data, id, image, token) => {
 	const putAdoptionPetEndpoint = `${adoptionPetsBaseEndpoint}${id}`;
 
 	let myHeaders = new Headers();
@@ -19,8 +19,8 @@ const putAdoptionPet = (data, id, token) => {
 	if (data.pet_status) {
 		formdata.append("pet_status", data.pet_status);
 	}
-	if (data.image) {
-		formdata.append("image", data.image[0]);
+	if (image) {
+		formdata.append("image", image);
 	}
 
 	let requestOptions = {
@@ -30,7 +30,8 @@ const putAdoptionPet = (data, id, token) => {
 		redirect: "follow",
 	};
 
-	const putAdoptionPetRequest = () => fetch(putAdoptionPetEndpoint, requestOptions);
+	const putAdoptionPetRequest = () =>
+		fetch(putAdoptionPetEndpoint, requestOptions);
 
 	return putAdoptionPetRequest();
 };
