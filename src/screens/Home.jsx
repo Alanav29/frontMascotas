@@ -21,7 +21,6 @@ const Home = () => {
 
 			if (result.status === 200) {
 				await setAdvertisements(result.data);
-				console.log(advertisements);
 			}
 		} catch (error) {
 			console.log("Ocurrio un error al traer los anuncios", error.message);

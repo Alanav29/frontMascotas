@@ -1,6 +1,6 @@
 import { lostPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const putLostPet = (data, id, token) => {
+const putLostPet = (data, id, image, token) => {
 	const putLostPetEndpoint = `${lostPetsBaseEndpoint}${id}`;
 
 	let myHeaders = new Headers();
@@ -19,8 +19,8 @@ const putLostPet = (data, id, token) => {
 	if (data.pet_status) {
 		formdata.append("pet_status", data.pet_status);
 	}
-	if (data.image) {
-		formdata.append("image", data.image[0]);
+	if (image) {
+		formdata.append("image", image);
 	}
 
 	let requestOptions = {

@@ -1,0 +1,43 @@
+.userInfoBg {
+	background-color: var(--home-color);
+}
+
+.userInfo {
+	padding: 50px;
+}
+
+.petAvatarContainer {
+	background-image: url("../assets/blob.svg");
+	width: 220px;
+	height: 220px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.petAvatar {
+	width: 120px;
+}
+
+.userLostPets {
+	background: var(--home-color);
+	background: linear-gradient(
+		180deg,
+		var(--home-color) 50%,
+		rgba(255, 255, 255, 1) 50%
+	);
+}
+
+@media (max-width: 576px) {
+	.petAvatarContainer {
+		width: 150px;
+		height: 150px;
+	}
+	.petAvatar {
+		width: 80px;
+	}
+}

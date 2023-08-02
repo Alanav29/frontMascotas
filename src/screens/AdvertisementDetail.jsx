@@ -64,7 +64,7 @@ const AdvertisementDetail = () => {
 	return (
 		<div className="container my-4">
 			<div className="mb-3">
-				<div className="d-flex flex-wrap">
+				<div className="d-flex flex-column">
 					<div className="d-flex">
 						<img
 							src={advertisement.image.secure_url}

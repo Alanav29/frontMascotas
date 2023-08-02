@@ -5,6 +5,10 @@
 	margin-top: var(--bs-dropdown-spacer);
 } */
 
+.navLogo {
+	height: 2rem;
+}
+
 a {
 	text-decoration: none;
 }
@@ -15,10 +19,6 @@ a {
 
 .nav-item:hover {
 	color: grey;
-}
-
-.navColor {
-	background-color: var(--home-color) !important;
 }
 
 .nav-item {

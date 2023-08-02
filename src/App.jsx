@@ -5,22 +5,27 @@ import "../src/styles/App.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./features/userFeature";
+import Footer from "./components/footerComponents/Footer";
 
 const App = () => {
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		let user = JSON.parse(window.localStorage.getItem("user"));
+	const reloadUser = async () => {
+		let user = await JSON.parse(window.localStorage.getItem("user"));
 
 		if (user) {
-			dispatch(setUser(user));
+			await dispatch(setUser(user));
 		}
+	};
+
+	useEffect(() => {
+		reloadUser();
 	}, []);
 	return (
 		<>
 			<Router>
 				<Navbar />
 				<RouterIndex />
+				<Footer />
 			</Router>
 		</>
 	);

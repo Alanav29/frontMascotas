@@ -1,11 +1,11 @@
 import { shelteredPetsBaseEndpoint } from "../../config/apiRoutes";
 
-const postShelteredPet = (petData, user_id, token) => {
+const postShelteredPet = (petData, user_id, image, token) => {
 	const petInfo = {
 		name: petData.name,
 		date_found: petData.date_found,
 		description: petData.description,
-		image: petData.image,
+		image: image,
 	};
 
 	let myHeaders = new Headers();
@@ -16,7 +16,7 @@ const postShelteredPet = (petData, user_id, token) => {
 	formdata.append("user_id", user_id);
 	formdata.append("date_found", petInfo.date_found);
 	formdata.append("description", petInfo.description);
-	formdata.append("image", petInfo.image[0]);
+	formdata.append("image", petInfo.image);
 
 	let requestOptions = {
 		method: "POST",

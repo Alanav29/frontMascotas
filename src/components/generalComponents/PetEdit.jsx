@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useState, createRef } from "react";
 // import getLostPet from "../../utils/lostPets/getLostPet";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 // import putLostPet from "../../utils/lostPets/putLostPet";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Cropper } from "react-cropper";
+import "cropperjs/dist/cropper.css";
 
 const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 	const notify = () => {
@@ -17,6 +19,8 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 			position: toast.POSITION.TOP_CENTER,
 		});
 	};
+	let cropData = "#";
+	const cropperRef = createRef();
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -64,9 +68,16 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 		fetchDeletePet();
 	};
 
-	const fetchPutPet = async (data) => {
+	const getCropData = () => {
+		if (typeof cropperRef.current?.cropper !== "undefined") {
+			cropData = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+		}
+		return cropData;
+	};
+
+	const fetchPutPet = async (data, cropedImg) => {
 		try {
-			const result = await putPet(data, petId, user.token);
+			const result = await putPet(data, petId, cropedImg, user.token);
 
 			if (result.status === 200) {
 				navigate(`${petTypeUrl}${petId}`);
@@ -79,8 +90,9 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 	};
 
 	const updatePet = (data) => {
+		let cropedImg = getCropData();
 		notify();
-		fetchPutPet(data);
+		fetchPutPet(data, cropedImg);
 	};
 
 	const setAsFinded = () => {
@@ -100,14 +112,13 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 							Foto de mascota
 						</label>
 						<input
-							{...register("image", {
-								onChange: (e) => {
-									setImgURL(URL.createObjectURL(e.target.files[0]));
-								},
-							})}
+							onChange={(e) => {
+								setImgURL(URL.createObjectURL(e.target.files[0]));
+							}}
 							type="file"
 							className="form-control mb-3"
 							id="petImgInput"
+							required
 						/>
 
 						<label className="form-label" htmlFor="petNameInput">
@@ -164,14 +175,13 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 							Foto de mascota
 						</label>
 						<input
-							{...register("image", {
-								onChange: (e) => {
-									setImgURL(URL.createObjectURL(e.target.files[0]));
-								},
-							})}
+							onChange={(e) => {
+								setImgURL(URL.createObjectURL(e.target.files[0]));
+							}}
 							type="file"
 							className="form-control mb-3"
 							id="petImgInput"
+							required
 						/>
 
 						<label className="form-label" htmlFor="petNameInput">
@@ -227,14 +237,13 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 							Foto de mascota
 						</label>
 						<input
-							{...register("image", {
-								onChange: (e) => {
-									setImgURL(URL.createObjectURL(e.target.files[0]));
-								},
-							})}
+							onChange={(e) => {
+								setImgURL(URL.createObjectURL(e.target.files[0]));
+							}}
 							type="file"
 							className="form-control mb-3"
 							id="petImgInput"
+							required
 						/>
 
 						<label className="form-label" htmlFor="petNameInput">
@@ -278,10 +287,19 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 		<div className="container my-4">
 			<div className="row g-0">
 				<div className="col-md-5 p-4 ps-0">
-					<img
+					<Cropper
+						ref={cropperRef}
+						style={{ height: 250, width: "100%" }}
+						scale={1}
+						aspectRatio={12 / 9}
 						src={imgURL}
-						className="img-fluid rounded-start"
-						alt="Pet image"
+						cropBoxResizable={true}
+						viewMode={2}
+						minCropBoxHeight={50}
+						background={false}
+						autoCropArea={1}
+						checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+						guides={true}
 					/>
 				</div>
 				<div className="col-md-7 p-4">
