@@ -1,4 +1,4 @@
-const baseGeneralURL = "http://localhost:8000/api/";
+const baseGeneralURL = "https://grumpy-bear-visor.cyclic.cloud/";
 
 // routes fot the users configuration
 
