@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { createRef, useState } from "react";
 import "cropperjs/dist/cropper.css";
 import { Cropper } from "react-cropper";
-// import { ReactCropperElement } from "react-cropper";
+import { blobToURL, fromURL } from "image-resize-compress";
 
 const TrialAddPetScreen = ({ postPet, petTypeUrl }) => {
 	// const [petImage, setPetImage] = useState();
@@ -44,9 +44,14 @@ const TrialAddPetScreen = ({ postPet, petTypeUrl }) => {
 	};
 
 	const addPet = (data) => {
-		let cropedImg = getCropData();
 		notify();
-		fetchPostPet(data, cropedImg);
+		let cropedImg = getCropData();
+		fromURL(cropedImg, 80, 0, 0, "webp").then((blob) => {
+			// will output the converted blob file
+			// console.log(blob);
+			// will generate a url to the converted file
+			blobToURL(blob).then((url) => fetchPostPet(data, url));
+		});
 	};
 
 	let dateInput = <></>;
@@ -125,7 +130,13 @@ const TrialAddPetScreen = ({ postPet, petTypeUrl }) => {
 						</label>
 						<input
 							onChange={(e) => {
-								setImgURL(URL.createObjectURL(e.target.files[0]));
+								let img2 = URL.createObjectURL(e.target.files[0]);
+								fromURL(img2, 80, 0, 0, "webp").then((blob) => {
+									// will output the converted blob file
+									// console.log(blob);
+									// will generate a url to the converted file
+									blobToURL(blob).then((url) => setImgURL(url));
+								});
 							}}
 							type="file"
 							className="form-control mb-3"
