@@ -6,6 +6,33 @@
 	padding: 50px;
 }
 
+.userInfo::-webkit-scrollbar {
+	-webkit-appearance: none;
+}
+
+.userInfo::-webkit-scrollbar:vertical {
+	width: 10px;
+}
+
+.userInfo::-webkit-scrollbar-button:increment,
+.userInfo::-webkit-scrollbar-button {
+	display: none;
+}
+
+.userInfo::-webkit-scrollbar:horizontal {
+	height: 10px;
+}
+
+.userInfo::-webkit-scrollbar-thumb {
+	background-color: #797979;
+	border-radius: 20px;
+	border: 2px solid #f1f2f3;
+}
+
+.userInfo::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
 .petAvatarContainer {
 	background-image: url("../assets/blob.svg");
 	width: 220px;

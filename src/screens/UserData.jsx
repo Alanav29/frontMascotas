@@ -13,9 +13,9 @@ import petAvatar from "../assets/petAvatar1.svg";
 
 const UserData = () => {
 	const [userInfo, setUserInfo] = useState({
-		lostPets: [{ _id: 1, image: {} }],
-		shelteredPets: [{ _id: 1, image: {} }],
-		adoptionPets: [{ _id: 1, image: {} }],
+		lostPets: [],
+		shelteredPets: [],
+		adoptionPets: [],
 	});
 	const changesCounter = useSelector(selectChangesCounter);
 	const user = useSelector(selectUser);
