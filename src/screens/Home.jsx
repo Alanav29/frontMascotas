@@ -8,11 +8,7 @@ import getAllAdvertisements from "../utils/advertisements/getAdvertisements";
 import "../styles/Home.css";
 
 const Home = () => {
-	const [advertisements, setAdvertisements] = useState([
-		{ image: { secure_url: "" }, _id: 0 },
-		{ image: { secure_url: "" }, _id: 2 },
-		{ image: { secure_url: "" }, _id: 3 },
-	]);
+	const [advertisements, setAdvertisements] = useState();
 	const changesCounter = useSelector(selectChangesCounter);
 
 	const fetchAdvertisementsData = async () => {
@@ -31,6 +27,15 @@ const Home = () => {
 		fetchAdvertisementsData();
 	}, [changesCounter]);
 
+	let adsDiv = <></>;
+	if (advertisements) {
+		adsDiv = (
+			<div className="d-flex justify-content-center py-4 ">
+				<HomeCarousel advertisements={advertisements} />
+			</div>
+		);
+	}
+
 	return (
 		<>
 			<div className="d-flex justify-content-center px-4 py-4 homeDesc">
@@ -39,9 +44,7 @@ const Home = () => {
 			<div className="homeButtons">
 				<PetButtonsHome />
 			</div>
-			<div className="d-flex justify-content-center py-4 ">
-				<HomeCarousel advertisements={advertisements} />
-			</div>
+			{adsDiv}
 		</>
 	);
 };

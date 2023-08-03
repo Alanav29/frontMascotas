@@ -48,7 +48,7 @@ const Navbar = () => {
 					className="collapse navbar-collapse justify-content-end me-4 navElement2"
 					id="navbarNav"
 				>
-					<li className="nav-item dropdown">
+					<li className="nav-item dropdown mt-4 mt-md-0">
 						<a
 							className="nav-link dropdown-toggle"
 							href="#"
