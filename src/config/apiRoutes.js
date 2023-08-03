@@ -1,4 +1,4 @@
-const baseGeneralURL = "https://grumpy-bear-visor.cyclic.cloud/api/";
+const baseGeneralURL = "https://bright-jade-dungarees.cyclic.cloud/api/";
 
 // routes fot the users configuration
 
