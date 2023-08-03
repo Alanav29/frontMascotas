@@ -101,6 +101,14 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 	};
 
 	let petType = " en adopción";
+	let setAsFindedBtn = <></>;
+	if (pet.pet_status === false) {
+		setAsFindedBtn = (
+			<button onClick={setAsFinded} className="btn btn-success me-4 mb-3">
+				Marcar como reunido
+			</button>
+		);
+	}
 
 	if (user.isAdmin || user._id === pet.user_id) {
 		if (petTypeUrl === "/mascotas-perdidas/") {
@@ -161,9 +169,7 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 					<button onClick={deletePet} className="btn btn-danger me-4 mb-3">
 						Borrar mascota
 					</button>
-					<button onClick={setAsFinded} className="btn btn-success me-4 mb-3">
-						Marcar como reunido
-					</button>
+					{setAsFindedBtn}
 				</div>
 			);
 		} else if (petTypeUrl === "/mascotas-resguardadas/") {
@@ -224,9 +230,7 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 					<button onClick={deletePet} className="btn btn-danger me-4 mb-3">
 						Borrar mascota
 					</button>
-					<button onClick={setAsFinded} className="btn btn-success me-4 mb-3">
-						Marcar como reunido
-					</button>
+					{setAsFindedBtn}
 				</div>
 			);
 		} else {
@@ -275,9 +279,8 @@ const PetEdit = ({ getPet, delPet, putPet, petTypeUrl }) => {
 					<button onClick={deletePet} className="btn btn-danger me-4 mb-3">
 						Borrar mascota
 					</button>
-					<button onClick={setAsFinded} className="btn btn-success me-4 mb-3">
-						Marcar como reunido
-					</button>
+
+					{setAsFindedBtn}
 				</div>
 			);
 		}
