@@ -1,4 +1,4 @@
-const baseGeneralURL = "https://odd-blue-crayfish-gown.cyclic.cloud/api/";
+const baseGeneralURL = "https://backmascotas-production.up.railway.app/api/";
 
 // routes fot the users configuration
 
