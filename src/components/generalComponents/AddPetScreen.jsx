@@ -131,12 +131,7 @@ const TrialAddPetScreen = ({ postPet, petTypeUrl }) => {
 						<input
 							onChange={(e) => {
 								let img2 = URL.createObjectURL(e.target.files[0]);
-								fromURL(img2, 80, 0, 0, "webp").then((blob) => {
-									// will output the converted blob file
-									// console.log(blob);
-									// will generate a url to the converted file
-									blobToURL(blob).then((url) => setImgURL(url));
-								});
+								setImgURL(img2);
 							}}
 							type="file"
 							className="form-control mb-3"
