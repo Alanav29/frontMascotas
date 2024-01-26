@@ -1,4 +1,5 @@
-const baseGeneralURL = "https://backmascotas-production.up.railway.app/api/";
+// const baseGeneralURL = "https://backmascotas-production.up.railway.app/api/";
+const baseGeneralURL = "https://backmascotas.onrender.com/api/";
 
 // routes fot the users configuration
 
@@ -15,12 +16,12 @@ const commentsBaseEndpoint = `${baseGeneralURL}comments/`;
 const advertisementsBaseEndpoint = `${baseGeneralURL}advertisements/`;
 
 export {
-	usersBaseEndpoint,
-	userInfoEndpoint,
-	userSignInEndpoint,
-	lostPetsBaseEndpoint,
-	commentsBaseEndpoint,
-	shelteredPetsBaseEndpoint,
-	adoptionPetsBaseEndpoint,
-	advertisementsBaseEndpoint,
+  usersBaseEndpoint,
+  userInfoEndpoint,
+  userSignInEndpoint,
+  lostPetsBaseEndpoint,
+  commentsBaseEndpoint,
+  shelteredPetsBaseEndpoint,
+  adoptionPetsBaseEndpoint,
+  advertisementsBaseEndpoint,
 };
